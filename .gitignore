@@ -1,0 +1,10 @@
+*.zip
+node_modules
+coverage
+.env
+event.json
+bin/
+etc/
+include/
+lib64/
+share/

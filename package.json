@@ -1,0 +1,41 @@
+{
+  "name": "slamscan",
+  "description": "Use lambda to scan s3 files on upload. S3 LAMbda clamSCAN",
+  "author": "Patrick McAndrew <patrick@peerj.com>",
+  "license": "MIT",
+  "version": "0.0.2",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:PeerJ/slamscan.git"
+  },
+  "dependencies": {
+    "app-root-path": "^1.0.0",
+    "async": "^0.9.0",
+    "aws-sdk": "^2.1.14",
+    "clamscan": "^0.7.0",
+    "config": "^1.12.0",
+    "fs-extra": "^0.21.0",
+    "request": "^2.53.0",
+    "temp": "^0.8.1",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.14",
+    "jscs": "^1.13.1",
+    "jshint": "^2.7.0",
+    "mocha": "^2.2.5",
+    "node-lambda": "^0.5.0",
+    "rewire": "^2.3.3",
+    "should": "^6.0.3",
+    "sinon": "^1.14.1"
+  },
+  "scripts": {
+    "lint": "rm -rf coverage/; ./node_modules/.bin/jshint src/",
+    "checkStyle": "./node_modules/.bin/jscs src/",
+    "pretest": "npm run-script lint && npm run-script checkStyle",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec -r should",
+    "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage"
+  },
+  "engine": "node >= 0.4.1"
+}
