@@ -7,7 +7,6 @@ var config = require('config');
 var temp = require('temp');
 var path = require('path');
 var request = require('request');
-var Clamscan = require('clamscan');
 var appRoot = require('app-root-path');
 var url = require('url');
 var validUrl = require('valid-url');
@@ -28,7 +27,7 @@ module.exports = {
       var file = path.join('/tmp', filename);
       console.log(file);
       fs.exists(file, function(exists) {
-        console.log("%s exists: %s", file, exists);
+        console.log('%s exists: %s', file, exists);
         if (exists) {
           next();
         } else {
@@ -42,13 +41,13 @@ module.exports = {
       callback(err);
     });
   },
-  manualScan: function(file, callback) {
+  initClamscan: function(callback) {
     var exe = '/var/task/bin/clamscan';
     var tmpExe = '/tmp/clamscan';
     async.waterfall([
       function(next) {
         fs.exists(tmpExe, function(exists) {
-          console.log("%s exists: %s", tmpExe, exists);
+          console.log('%s exists: %s', tmpExe, exists);
           if (exists) {
             next();
           } else {
@@ -59,62 +58,43 @@ module.exports = {
         });
       },
       function(next) {
-        fs.chmod(tmpExe, '755', function(err) {
+        fs.chmod(tmpExe, '0755', function(err) {
           next(err);
         });
       },
-      function(next) {
-        var runCmd = util.format('%s -d /tmp %s', tmpExe, file);
-        var v = process.exec(runCmd, function (err, stdout, stderr) {
-          var isInfected = false;
-          if (err) {
-            err = util.format("%s %s %s", err, stdout, stderr);
-            isInfected = true;
-          }
-          next(err, isInfected);
-        });
-        
-      }
-    ], function(err, isInfected) {
+    ], function(err) {
       if (err) {
         console.log(err);
       }
-      callback(err, isInfected);
-    });
-
-    /*
-	v.on('exit', function (code) {
-      var err = null;
-      if (code != 0) {
-        err = util.format('clamscan returned error code %d', code);
-      }
       callback(err);
+    });    
+  },
+  manualScan: function(file, callback) {
+    var tmpExe = '/tmp/clamscan';
+    /*
+    var runCmd = util.format('%s -d /tmp %s', tmpExe, file);
+    var v = process.exec(runCmd, function(err, stdout, stderr) {
+      console.log('Ran %s. StdErr: %s Stdout: %s', runCmd, stderr, stdout);
+      var isInfected = false;
+      var details = false;
+      if (err) {
+        details = util.format('Code: %s Stack: %s', err.code, err.stack);
+        err = false;
+        isInfected = true;
+      }
+      callback(err, isInfected, details);
     });
     */
-  },
-  getClamscan: function() {
-    /*jscs:disable*/
-    return new Clamscan({
-      remove_infected: false, // If true, removes infected files
-      quarantine_infected: false, // False: Don't quarantine, Path: Moves files to this place.
-      scan_log: null, // Path to a writeable log file to write scan results into
-      debug_mode: true, // Whether or not to log info/debug/error msgs to the console
-      file_list: null, // path to file containing list of files to scan (for scan_files method)
-      scan_recursively: false, // If true, deep scan folders recursively
-      testing_mode: true,
-      clamscan: {
-        path: '/var/task/bin/clamscan', // Path to clamscan binary on your server
-        db: '/tmp', // Path to a custom virus definition database
-        scan_archives: true, // If true, scan archives (ex. zip, rar, tar, dmg, iso, etc...)
-        active: true // If true, this module will consider using the clamscan binary
-      },
-      clamdscan: {
-        path: null,
-        active: false
-      },
-      preference: 'clamscan' // If clamdscan is found and active, it will be used by default
+    var s = process.spawn(tmpExe, [ '-d', '/tmp', file]);
+    s.stderr.on('data', function(data) {
+      console.log(data.toString());
     });
-    /*jscs:enable*/
+    s.stdout.on('data', function(data) {
+      console.log(data.toString());
+    });
+    s.on('close', function(code) {
+      callback(false, code != 0, code);
+    });
   },
   downloadUrlToFile: function(downloadUrl, file, callback) {
     /*jscs:disable*/
@@ -169,24 +149,14 @@ module.exports = {
       callback(null, tmpFile);
     });
   },
-  scan: function(clamscan, file, callback) {
-    console.log(file);
-    /*jscs:disable*/
-    clamscan.is_infected(file, function(err, scannedFile, isInfected) {
-      /*jscs:enable*/
-      if (err) {
-        console.log(err);
-      }
-      callback(err, scannedFile, isInfected);
-    });
-  },
-  sns: function(sns, topicArn, bucket, key, result, callback) {
+  sns: function(sns, topicArn, bucket, key, result, details, callback) {
     sns.publish({
       TopicArn: topicArn,
       Message: JSON.stringify({
         Bucket: bucket,
         Key: key,
         Result: result,
+        Details: details
       }),
     }, function(err, data) {
       if (err) {
@@ -209,47 +179,48 @@ module.exports = {
     var s3 = module.exports.getS3();
     var sns = module.exports.getSns();
 
-    module.exports.downloadClamscanDbFiles(function(err) {
+    async.parallel({
+      dbDownload: function(next) {
+        module.exports.downloadClamscanDbFiles(next);
+      },
+      initClamscan: function(next) {
+        module.exports.initClamscan(next);
+      },
+    }, function(err) {
       if (err) {
         console.log('Failed to download clamscandb files. Exiting');
         return context.done(err);
       }
 
-      // var clamscan = module.exports.getClamscan();  
       async.each(event.Records, function(record, callback) {
         var bucket = record.s3.bucket.name;
         var key = record.s3.object.key;
-  
+
         async.waterfall([
           function(next) {
-            console.log("bucket %s key %s", bucket, key);
+            console.log('bucket %s key %s', bucket, key);
             module.exports.download(s3, bucket, key, function(err, tmpFile) {
               next(err, tmpFile);
             });
           },
           function(tmpFile, next) {
-            /*
-            module.exports.scan(
-              clamscan,
-              tmpFile,
-              function(err, file, isInfected) {
-                next(err, isInfected);
-              }
-            );*/
             module.exports.manualScan(
-             tmpFile,
-             function(err, file, isInfected) {
-              next(err, isInfected);
-             }
+              tmpFile,
+              function(err, isInfected, details) {
+                console.log('scan isInfected %d details: %s', isInfected, details);
+                next(err, isInfected, details);
+              }
             );
           },
-          function(isInfected, next) {
+          function(isInfected, details, next) {
+            console.log('sns %s isInfected %s', key, isInfected);
             module.exports.sns(
               sns,
               topicArn,
               bucket,
               key,
               isInfected,
+              details,
               function(err) {
                 next(err);
               }

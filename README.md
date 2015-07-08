@@ -1,13 +1,22 @@
+NOT WORKING!!!!
+---
+We're having an issue getting the clamscan executable to execute in labmda.  Hopefully will be able to eventually
+pick this up again and resolve
+
 S3 LAMbda clamSCAN
 ---
 The goal of this project is to efficiently virus scan files that are uploaded to a s3 bucket
 and notify the results of the scan.
 
-This can be achieved in a cost effictive manner using Lambda, NodeJs and Clamscan.
+This can be achieved in a reasonably cost effictive manner using Lambda, NodeJs and Clamscan.
 
 S3 is configured to call a nodejs handler when a s3 put event is received.  The nodejs handler calls out to clamscan
 and then publishes to SNS with the results.  SNS can be configured to post to a webhook or put in a SQS queue for
 later processing.
+
+Unfortunately due to size limitations, its not possible to keep the virus definitions in the package, but rather
+they need to be uploaded to s3 where the lambda process can then download.  If you're processing files quite closely
+together, the lambda container may still be around and so the virus definitions won't need to be re-downloaded.
 
 Requirements
 ---
