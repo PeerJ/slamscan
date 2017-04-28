@@ -31,8 +31,8 @@
     "sinon": "^2.1.0"
   },
   "scripts": {
-    "lint": "rm -rf coverage/; ./node_modules/.bin/jshint src/",
-    "checkStyle": "./node_modules/.bin/jscs src/",
+    "lint": "./node_modules/.bin/jshint */**.js",
+    "checkStyle": "./node_modules/.bin/jscs */**.js",
     "pretest": "npm run-script lint && npm run-script checkStyle",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec -r should",
     "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage"

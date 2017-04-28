@@ -7,7 +7,6 @@ var config = require('config');
 var temp = require('temp');
 var path = require('path');
 var request = require('request');
-var appRoot = require('app-root-path');
 var url = require('url');
 var validUrl = require('valid-url');
 var process = require('child_process');
@@ -71,18 +70,6 @@ module.exports = {
   },
   manualScan: function(file, callback) {
     var tmpExe = '/tmp/clamscan';
-    var runCmd = util.format('%s -d /tmp %s', tmpExe, file);
-    var v = process.exec(runCmd, function(err, stdout, stderr) {
-      console.log('Ran %s. StdErr: %s Stdout: %s', runCmd, stderr, stdout);
-      var isInfected = false;
-      var details = false;
-      if (err) {
-        details = util.format('Code: %s Stack: %s', err.code, err.stack);
-        err = false;
-        isInfected = true;
-      }
-      callback(err, isInfected, details);
-    });
     var s = process.spawn(tmpExe, [ '-d', '/tmp', file]);
     s.stderr.on('data', function(data) {
       console.log(data.toString());
@@ -168,7 +155,7 @@ module.exports = {
       util.inspect(event, {depth: 5})
     );
 
-    if (typeof (event.Records) == 'undefined') {
+    if (typeof (event.Records) === 'undefined') {
       console.log('Unable to find event.Records event:%j', event);
       return context.done();
     }
@@ -232,7 +219,7 @@ module.exports = {
           callback(err);
         });
       }, function(err) {
-        context.done();
+        context.done(err);
       });
     });
   },

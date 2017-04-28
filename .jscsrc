@@ -1,4 +1,9 @@
 {
     "preset": "node-style-guide",
-    "excludeFiles": ["node_modules/**"]
+    "excludeFiles": [
+        "node_modules/**",
+        "coverage/**",
+        "bin/**",
+        "lib64/**"
+    ]
 }
