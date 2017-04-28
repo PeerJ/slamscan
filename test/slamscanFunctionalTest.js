@@ -3,9 +3,8 @@ var slamscan = rewire('../src/slamscan');
 var fs = require('fs');
 var should = require('should');
 var sinon = require('sinon');
-/*
- * No need to always run this, but useful to verify on occasion
- * 
+
+// No need to always run this, but useful to verify on occasion
 describe('scan', function() {
   context('when given EICAR-AV-Test', function() {
     it('should return a virus', function(done) {
@@ -19,4 +18,3 @@ describe('scan', function() {
     });
   });
 });
-*/
