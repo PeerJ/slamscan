@@ -67,11 +67,10 @@ module.exports = {
         console.log(err);
       }
       callback(err);
-    });    
+    });
   },
   manualScan: function(file, callback) {
     var tmpExe = '/tmp/clamscan';
-    /*
     var runCmd = util.format('%s -d /tmp %s', tmpExe, file);
     var v = process.exec(runCmd, function(err, stdout, stderr) {
       console.log('Ran %s. StdErr: %s Stdout: %s', runCmd, stderr, stdout);
@@ -84,7 +83,6 @@ module.exports = {
       }
       callback(err, isInfected, details);
     });
-    */
     var s = process.spawn(tmpExe, [ '-d', '/tmp', file]);
     s.stderr.on('data', function(data) {
       console.log(data.toString());
@@ -93,7 +91,7 @@ module.exports = {
       console.log(data.toString());
     });
     s.on('close', function(code) {
-      callback(false, code != 0, code);
+      callback(false, code !== 0, code);
     });
   },
   downloadUrlToFile: function(downloadUrl, file, callback) {
@@ -119,7 +117,7 @@ module.exports = {
       fileStream.removeListener('finish', closeStream);
       callback(err);
     }).on('response', function(response) {
-      if (response.statusCode != 200) {
+      if (response.statusCode !== 200) {
         console.error('Error downloading %s Code: %d',
           downloadUrl,
           response.statusCode
@@ -156,7 +154,7 @@ module.exports = {
         Bucket: bucket,
         Key: key,
         Result: result,
-        Details: details
+        Details: details,
       }),
     }, function(err, data) {
       if (err) {
@@ -207,7 +205,11 @@ module.exports = {
             module.exports.manualScan(
               tmpFile,
               function(err, isInfected, details) {
-                console.log('scan isInfected %d details: %s', isInfected, details);
+                console.log(
+                    'scan isInfected %d details: %s',
+                    isInfected,
+                    details
+                );
                 next(err, isInfected, details);
               }
             );
