@@ -7,6 +7,7 @@ var config = require('config');
 var temp = require('temp');
 var path = require('path');
 var request = require('request');
+var Clamscan = require('clamscan');
 var url = require('url');
 var validUrl = require('valid-url');
 var process = require('child_process');
@@ -79,6 +80,28 @@ module.exports = {
     });
     s.on('close', function(code) {
       callback(false, code !== 0, code);
+    });
+  },
+  getClamscan: function() {
+    return new Clamscan({
+      remove_infected: false, // If true, removes infected files
+      quarantine_infected: false, // False: Don't quarantine, Path: Moves files to this place.
+      scan_log: null, // Path to a writeable log file to write scan results into
+      debug_mode: true, // Whether or not to log info/debug/error msgs to the console
+      file_list: null, // path to file containing list of files to scan (for scan_files method)
+      scan_recursively: false, // If true, deep scan folders recursively
+      testing_mode: true,
+      clamscan: {
+        path: '/var/task/bin/clamscan', // Path to clamscan binary on your server
+        db: '/tmp', // Path to a custom virus definition database
+        scan_archives: true, // If true, scan archives (ex. zip, rar, tar, dmg, iso, etc...)
+        active: true // If true, this module will consider using the clamscan binary
+      },
+      clamdscan: {
+        path: null,
+        active: false
+      },
+      preference: 'clamscan' // If clamdscan is found and active, it will be used by default
     });
   },
   downloadUrlToFile: function(downloadUrl, file, callback) {
