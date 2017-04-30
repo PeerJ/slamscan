@@ -1,9 +1,7 @@
 var rewire = require('rewire');
-var slamscan = rewire('../src/slamscan');
+var slamscan = rewire('../src');
 var sinon = require('sinon');
-var request = require('request');
 var fs = require('fs');
-var path = require('path');
 
 describe('download', function() {
   describe('when missing a bucket', function() {
@@ -49,43 +47,3 @@ describe('download', function() {
     });
   });
 });
-
-describe('scan', function() {
-  describe('when given EICAR-AV-Test', function() {
-    it('should return a virus', function(done) {
-      var eicarAvTest = path.join(__dirname, 'samples', 'EICAR-AV-Test');
-      var clamscan = slamscan.getClamscan();
-      this.timeout(15000);
-      slamscan.scan(clamscan, eicarAvTest, function(err, file, isInfected) {
-        if (err) {
-          return done(err);
-        }
-        file.should.be.exactly(eicarAvTest);
-        isInfected.should.be.exactly(true);
-        done();
-      });
-    });
-  });
-});
-
-
-describe('downloadClamscanDbFiles', function() {
-  beforeEach(function(done) {
-    sinon.stub(request, 'get')
-      .yields(null, null, JSON.stringify({woof: 'Woof!'}));
-    done();
-  });
-
-  afterEach(function() {
-    request.get.restore();
-  });
-
-  describe('when files do not exist', function() {
-    it('should download files', function(done) {
-      slamscan.downloadClamscanDbFiles(function(err) {
-        done(err);
-      });
-    });
-  });
-});
-

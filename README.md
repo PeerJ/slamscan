@@ -67,8 +67,8 @@ You'll now need to update the virus definition files
    give everyone read access.
 
 You can verify that it works
-1. `/var/task/bin/clamscan /var/task/test/samples/EICAR-AV-Test`
-   * Should return `/var/task/test/samples/EICAR-AV-Test: Eicar-Test-Signature FOUND`
+1. `/var/task/bin/clamscan /var/task/test/resources/EICAR-AV-Test`
+   * Should return `/var/task/test/resources/EICAR-AV-Test: Eicar-Test-Signature FOUND`
 
 Deployment
 ---
