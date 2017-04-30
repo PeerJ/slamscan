@@ -3,10 +3,11 @@ var util = require('util');
 var config = require('config');
 var download = require('./download');
 var downloadClamscanDbFiles = require('./downloadClamscanDbFiles');
+var getClamscan = require('./getClamscan');
 var getS3 = require('./getS3');
 var getSns = require('./getSns');
 var initClamscan = require('./initClamscan');
-var manualScan = require('./manualScan');
+var scan = require('./scan');
 var notifyInfected = require('./sns');
 
 module.exports = function(event, context) {
@@ -20,6 +21,7 @@ module.exports = function(event, context) {
   }
 
   var topicArn = config.get('sns-topic-arn');
+  var clamscan = getClamscan();
   var s3 = getS3();
   var sns = getSns();
 
@@ -44,19 +46,20 @@ module.exports = function(event, context) {
           });
         },
         function(tmpFile, next) {
-          manualScan(
+          scan(
+            clamscan,
             tmpFile,
-            function(err, isInfected, details) {
+            function(err, details, isInfected) {
               console.log(
                 'scan isInfected %d details: %s',
                 isInfected,
                 details
               );
-              next(err, isInfected, details);
+              next(err, details, isInfected);
             }
           );
         },
-        function(isInfected, details, next) {
+        function(details, isInfected, next) {
           console.log('sns %s isInfected %s', key, isInfected);
           notifyInfected(
             sns,

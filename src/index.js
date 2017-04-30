@@ -6,7 +6,6 @@ var getS3 = require('./getS3');
 var getSns = require('./getSns');
 var handler = require('./handler');
 var initClamscan = require('./initClamscan');
-var manualScan = require('./manualScan');
 var scan = require('./scan');
 var sns = require('./sns');
 
@@ -19,7 +18,6 @@ module.exports = {
   getSns: getSns,
   handler: handler,
   initClamscan: initClamscan,
-  manualScan: manualScan,
   scan: scan,
   sns: sns
 };
