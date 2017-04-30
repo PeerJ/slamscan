@@ -1,10 +1,11 @@
+var config = require('config');
 var async = require('async');
 var fs = require('fs');
 var fse = require('fs-extra');
 
 module.exports = function(callback) {
-  var exe = '/var/task/bin/clamscan';
-  var tmpExe = '/tmp/clamscan';
+  var exe = config.get('clamscan.clamscan.path');
+  var tmpExe = config.get('tmp.clamscan.path');
   async.waterfall([
     function(next) {
       fs.exists(tmpExe, function(exists) {

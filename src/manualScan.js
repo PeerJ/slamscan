@@ -1,7 +1,8 @@
 var process = require('child_process');
+var config = require('config');
 
 module.exports = function(file, callback) {
-  var tmpExe = '/tmp/clamscan';
+  var tmpExe = config.get('clamscan.clamscan.path');
   var s = process.spawn(tmpExe, ['-d', '/tmp', file]);
   s.stderr.on('data', function(data) {
     console.log(data.toString());
