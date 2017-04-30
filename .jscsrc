@@ -1,9 +1,11 @@
 {
-    "preset": "node-style-guide",
-    "excludeFiles": [
-        "node_modules/**",
-        "coverage/**",
-        "bin/**",
-        "lib64/**"
-    ]
+  "preset": "node-style-guide",
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
+  "requireTrailingComma": false,
+  "excludeFiles": [
+    "node_modules/**",
+    "coverage/**",
+    "bin/**",
+    "lib64/**"
+  ]
 }

@@ -1,0 +1,11 @@
+db-files:
+  - test://test.test/test/test
+  - test://test.test/test/test
+  - test://test.test/test/test
+  - test://test.test/test/test
+  - test://test.test/test/test
+
+clamscan:
+  clamscan:
+    path: /usr/local/bin/clamscan
+    db: /usr/local/Cellar/clamav/0.99.2_1/share/clamav/

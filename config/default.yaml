@@ -1,0 +1,48 @@
+sns-topic-arn: DEFINE-ME
+
+db-files:
+  - DEFINE-ME
+  - DEFINE-ME
+  - DEFINE-ME
+
+clamscan:
+  # If true removes infected files
+  remove_infected: false
+
+  # False: Don't quarantine
+  # Path: Moves files to this place.
+  quarantine_infected: false
+
+  # Path to a writeable log file to write scan results into
+  scan_log: null
+
+  # Whether or not to log info/debug/error msgs to the console
+  debug_mode: true
+
+  # Path to file containing list of files to scan (for scan_files method)
+  file_list: null
+
+  # If true deep scan folders recursively
+  scan_recursively: false
+
+  # If true use test mode
+  testing_mode: false
+
+  clamscan:
+    # Path to clamscan binary on your server
+    path: /var/task/bin/clamscan
+    # Path to a custom virus definition database
+    db: /tmp
+    # If true scan archives (ex. zip, rar, tar, dmg, iso, etc...)
+    scan_archives: true
+    # If true this module will consider using the clamscan binary
+    active: true
+
+  clamdscan:
+    # Path to clamscand binary on your server
+    path: null
+    # If true this module will consider using the clamscand binary
+    active: false
+
+  # If clamdscan is found and active it will be used by default
+  preference: clamscan

@@ -25,14 +25,14 @@ Requirements
    1. SNS Topic for notification
    1. IAM Resources
       1. A IAM user for Node Lambda deployment with an access key/secret
-         * Quick Start: AWSLambdaFullAccess
-      1. A lambda_exec role
+         * Quick Start: `AWSLambdaFullAccess`
+      1. A `lambda_exec` role
          * IAM/Roles/New Role
          * AWS Lambda Service Type
-         * Quick Start: Add Policies: AmazonS3ReadOnlyAccess & AmazonSNSFullAccess
-         * Better Security: Publish Access to your SNS Topic Arn & ListBuckets/GetObject Access to your S3 Buckets that you want to scan
+         * Quick Start: Add Policies: `AmazonS3ReadOnlyAccess` & `AmazonSNSFullAccess`
+         * Better Security: Publish Access to your SNS Topic Arn & `ListBuckets`/`GetObject` Access to your S3 Buckets that you want to scan
          * CloudWatch is very useful for debugging - you will need to add permissions for that as well if desired.
-1. NodeJs installed
+1. NodeJS installed
 
 Installation
 ---
@@ -51,10 +51,10 @@ run under AWS Lambda.
 1. Run `./configure --enable-static=yes --enable-shared=no --disable-unrar --prefix=/var/task`
 1. Run `make`
 1. Run `sudo make install`
-1. Copy files to the same relative folder names in slamscan (bin & lib64)
-   * /var/task/bin/clamscan
-   * /var/task/lib64/*
-   * /var/task/lib64/pkgconfig/*
+1. Copy files to the same relative folder names in `slamscan/bin` & `slamscan/lib64`
+   * `/var/task/bin/clamscan`
+   * `/var/task/lib64/*`
+   * `/var/task/lib64/pkgconfig/*`
 
 You'll now need to update the virus definition files
 1. You probably want to change ownership to ec2-user. `sudo chown -R ec2-user /var/task`
@@ -62,8 +62,8 @@ You'll now need to update the virus definition files
    * Minimally, you'll need to adjust the line below `#Comment or remove the line below`
 1. `mkdir /var/task/share/clamav`
 1. `/var/task/bin/freshclam`
-1. You'll need to upload the files from /var/task/bin/freshclam to a location in s3.
-   You'll need to make sure that the lambda_exec_role has read permission to these files, or alternatively, just
+1. You'll need to upload the files from `/var/task/bin/freshclam` to a location in s3.
+   You'll need to make sure that the `lambda_exec_role` has read permission to these files, or alternatively, just
    give everyone read access.
 
 You can verify that it works

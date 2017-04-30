@@ -20,7 +20,7 @@ module.exports = {
     return new AWS.SNS();
   },
   downloadClamscanDbFiles: function(callback) {
-    var dbFiles = config.get('slamscan.clamscan-db-files');
+    var dbFiles = config.get('db-files');
     async.each(dbFiles, function(dbFile, next) {
       var urlPath = url.parse(dbFile);
       var filename = path.basename(urlPath.pathname);
@@ -61,12 +61,21 @@ module.exports = {
         fs.chmod(tmpExe, '0755', function(err) {
           next(err);
         });
-      },
+      }
     ], function(err) {
       if (err) {
         console.log(err);
       }
       callback(err);
+    });
+  },
+  scan: function(clamscan, file, callback) {
+    console.log(file);
+    clamscan.is_infected(file, function(err, scannedFile, isInfected) {
+      if (err) {
+        console.log(err);
+      }
+      callback(err, scannedFile, isInfected);
     });
   },
   manualScan: function(file, callback) {
@@ -83,26 +92,7 @@ module.exports = {
     });
   },
   getClamscan: function() {
-    return new Clamscan({
-      remove_infected: false, // If true, removes infected files
-      quarantine_infected: false, // False: Don't quarantine, Path: Moves files to this place.
-      scan_log: null, // Path to a writeable log file to write scan results into
-      debug_mode: true, // Whether or not to log info/debug/error msgs to the console
-      file_list: null, // path to file containing list of files to scan (for scan_files method)
-      scan_recursively: false, // If true, deep scan folders recursively
-      testing_mode: true,
-      clamscan: {
-        path: '/var/task/bin/clamscan', // Path to clamscan binary on your server
-        db: '/tmp', // Path to a custom virus definition database
-        scan_archives: true, // If true, scan archives (ex. zip, rar, tar, dmg, iso, etc...)
-        active: true // If true, this module will consider using the clamscan binary
-      },
-      clamdscan: {
-        path: null,
-        active: false
-      },
-      preference: 'clamscan' // If clamdscan is found and active, it will be used by default
-    });
+    return new Clamscan(config.get('clamscan'));
   },
   downloadUrlToFile: function(downloadUrl, file, callback) {
     /*jscs:disable*/
@@ -151,7 +141,7 @@ module.exports = {
     var file = fs.createWriteStream(tmpFile);
     var save = s3.getObject({
       Bucket: bucket,
-      Key: key,
+      Key: key
     }).createReadStream().pipe(file);
     save.on('close', function() {
       callback(null, tmpFile);
@@ -164,8 +154,8 @@ module.exports = {
         Bucket: bucket,
         Key: key,
         Result: result,
-        Details: details,
-      }),
+        Details: details
+      })
     }, function(err, data) {
       if (err) {
         console.log(err);
@@ -183,7 +173,7 @@ module.exports = {
       return context.done();
     }
 
-    var topicArn = config.get('slamscan.sns-topic-arn');
+    var topicArn = config.get('sns-topic-arn');
     var s3 = module.exports.getS3();
     var sns = module.exports.getSns();
 
@@ -193,7 +183,7 @@ module.exports = {
       },
       initClamscan: function(next) {
         module.exports.initClamscan(next);
-      },
+      }
     }, function(err) {
       if (err) {
         console.log('Failed to download clamscandb files. Exiting');
@@ -237,7 +227,7 @@ module.exports = {
                 next(err);
               }
             );
-          },
+          }
         ], function(err) {
           callback(err);
         });
@@ -245,6 +235,6 @@ module.exports = {
         context.done(err);
       });
     });
-  },
+  }
 };
 
