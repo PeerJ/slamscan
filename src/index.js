@@ -1,6 +1,6 @@
 var download = require('./download');
 var downloadClamscanDbFiles = require('./downloadClamscanDbFiles');
-var downloadUrlToFile = require('./downloadUrlToFile');
+var downloadUrlToFile = require('./util/downloadUrlToFile');
 var getClamscan = require('./getClamscan');
 var getS3 = require('./getS3');
 var getSns = require('./getSns');

@@ -3,7 +3,7 @@ var fs = require('fs');
 var config = require('config');
 var path = require('path');
 var url = require('url');
-var downloadUrlToFile = require('./downloadUrlToFile');
+var util = require('./util');
 
 module.exports = function(callback) {
   var dbFiles = config.get('db-files');
@@ -17,7 +17,7 @@ module.exports = function(callback) {
       if (exists) {
         next();
       } else {
-        downloadUrlToFile(dbFile, file, function(err) {
+        util.downloadUrlToFile(dbFile, file, function(err) {
           next(err);
         });
       }
