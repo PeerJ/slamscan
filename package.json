@@ -38,5 +38,5 @@
     "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec -r should",
     "posttest": "NODE_ENV=test ./node_modules/.bin/istanbul check-coverage"
   },
-  "engine": "node >= 0.4.1"
+  "engine": "node >= 4.3.2"
 }
