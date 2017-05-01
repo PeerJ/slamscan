@@ -17,7 +17,7 @@ module.exports = function(callback) {
       if (exists) {
         next();
       } else {
-        util.downloadUrlToFile(dbFile, file, function(err) {
+        util.downloadFileFromUrl(dbFile, file, function(err) {
           next(err);
         });
       }

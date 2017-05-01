@@ -1,5 +1,5 @@
-var downloadUrlToFile = require('./downloadUrlToFile');
+var downloadFileFromUrl = require('./downloadFileFromUrl');
 
 module.exports = {
-  downloadUrlToFile: downloadUrlToFile
+  downloadFileFromUrl: downloadFileFromUrl
 };

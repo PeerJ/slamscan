@@ -9,12 +9,12 @@ var path = require('path');
 var util = require('../src/util');
 
 describe('downloadClamscanDbFiles', function() {
-  var downloadUrlToFileSpy;
+  var downloadFileFromUrlSpy;
 
   beforeEach(function() {
     sinon.stub(request, 'get')
       .returns(fs.createReadStream(config.get('clamscan.clamscan.path')));
-    downloadUrlToFileSpy = sinon.spy(util, 'downloadUrlToFile');
+    downloadFileFromUrlSpy = sinon.spy(util, 'downloadFileFromUrl');
   });
 
   afterEach(function() {
@@ -29,7 +29,7 @@ describe('downloadClamscanDbFiles', function() {
   describe('when files do not exist', function() {
     it('should download files', function(done) {
       downloadClamscanDbFiles(function(err) {
-        downloadUrlToFileSpy.callCount
+        downloadFileFromUrlSpy.callCount
           .should.be.exactly(config.get('db-files').length);
         done(err);
       });

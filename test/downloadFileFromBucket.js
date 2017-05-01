@@ -9,7 +9,7 @@ describe('download', function() {
       var s3 = slamscan.getS3();
       sinon.stub(s3, 'getObject')
         .returns();
-      slamscan.download(s3, '', '', function(err) {
+      slamscan.downloadFileFromBucket(s3, '', '', function(err) {
         err.should.match(/Error/);
         done();
       });
@@ -21,7 +21,7 @@ describe('download', function() {
       var s3 = slamscan.getS3();
       sinon.stub(s3, 'getObject')
         .returns();
-      slamscan.download(s3, 'bucket', '', function(err) {
+      slamscan.downloadFileFromBucket(s3, 'bucket', '', function(err) {
         err.should.match(/Error/);
         done();
       });
@@ -37,7 +37,7 @@ describe('download', function() {
             return fs.createReadStream(__filename);
           }
         });
-      slamscan.download(s3, 'bucket', 'key', function(err) {
+      slamscan.downloadFileFromBucket(s3, 'bucket', 'key', function(err) {
         stub.calledWith({
           Bucket: 'bucket',
           Key: 'key'

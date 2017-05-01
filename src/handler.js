@@ -1,14 +1,14 @@
 var async = require('async');
 var util = require('util');
 var config = require('config');
-var download = require('./download');
+var downloadFileFromBucket = require('./downloadFileFromBucket');
 var downloadClamscanDbFiles = require('./downloadClamscanDbFiles');
 var getClamscan = require('./getClamscan');
 var getS3 = require('./getS3');
 var getSns = require('./getSns');
 var initClamscan = require('./initClamscan');
-var scan = require('./scan');
-var notifyInfected = require('./sns');
+var scanFile = require('./scanFile');
+var notifySns = require('./notifySns');
 
 module.exports = function(event, context) {
   console.log('Reading options from event:\n',
@@ -41,12 +41,12 @@ module.exports = function(event, context) {
       async.waterfall([
         function(next) {
           console.log('bucket %s key %s', bucket, key);
-          download(s3, bucket, key, function(err, tmpFile) {
+          downloadFileFromBucket(s3, bucket, key, function(err, tmpFile) {
             next(err, tmpFile);
           });
         },
         function(tmpFile, next) {
-          scan(
+          scanFile(
             clamscan,
             tmpFile,
             function(err, details, isInfected) {
@@ -61,7 +61,7 @@ module.exports = function(event, context) {
         },
         function(details, isInfected, next) {
           console.log('sns %s isInfected %s', key, isInfected);
-          notifyInfected(
+          notifySns(
             sns,
             topicArn,
             bucket,
