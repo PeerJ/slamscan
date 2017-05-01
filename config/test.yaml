@@ -4,8 +4,3 @@ db-files:
   - test://test.test/test/test.3
   - test://test.test/test/test.4
   - test://test.test/test/test.5
-
-clamscan:
-  clamscan:
-    path: /usr/local/bin/clamscan
-    db: /usr/local/Cellar/clamav/0.99.2_1/share/clamav/

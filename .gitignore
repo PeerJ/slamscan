@@ -1,5 +1,8 @@
+config/local.yaml
+
 *.zip
 event.json
+
 bin/
 etc/
 include/
