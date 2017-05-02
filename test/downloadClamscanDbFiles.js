@@ -15,15 +15,12 @@ describe('downloadClamscanDbFiles', function() {
     sinon.stub(request, 'get')
       .returns(fs.createReadStream(config.get('clamscan.clamscan.path')));
     downloadFileFromUrlSpy = sinon.spy(util, 'downloadFileFromUrl');
+    cleanupDbFiles();
   });
 
   afterEach(function() {
     request.get.restore();
-    config.get('db-files').forEach(function(testUrl) {
-      var testUrlComponents = testUrl.split('/');
-      var testFile = testUrlComponents[testUrlComponents.length - 1];
-      fse.remove(path.join('/tmp', testFile));
-    });
+    cleanupDbFiles();
   });
 
   describe('when files do not exist', function() {
@@ -37,3 +34,10 @@ describe('downloadClamscanDbFiles', function() {
   });
 });
 
+function cleanupDbFiles() {
+  config.get('db-files').forEach(function(testUrl) {
+    var testUrlComponents = testUrl.split('/');
+    var testFile = testUrlComponents[testUrlComponents.length - 1];
+    fse.remove(path.join('/tmp', testFile));
+  });
+}
