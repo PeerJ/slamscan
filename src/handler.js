@@ -10,14 +10,14 @@ var initClamscan = require('./initClamscan');
 var scanFile = require('./scanFile');
 var notifySns = require('./notifySns');
 
-module.exports = function(event, context) {
+module.exports = function(event, context, callback) {
   console.log('Reading options from event:\n',
     util.inspect(event, {depth: 5})
   );
 
   if (typeof (event.Records) === 'undefined') {
     console.log('Unable to find event.Records event:%j', event);
-    return context.done();
+    return callback();
   }
 
   async.parallel({
@@ -26,7 +26,7 @@ module.exports = function(event, context) {
   }, function(err) {
     if (err) {
       console.log('Failed to download clamscandb files. Exiting');
-      return context.done(err);
+      return callback(err);
     }
 
     async.each(event.Records, function(record, callback) {
@@ -72,7 +72,7 @@ module.exports = function(event, context) {
         callback(err);
       });
     }, function(err) {
-      context.done(err);
+      callback(err);
     });
   });
 };
