@@ -1,13 +1,20 @@
+# Local configuration
 config/local.yaml
 
+# Local clamscan files
 *.zip
-event.json
-
 bin/
 etc/
 include/
 lib64/
+sbin/
 share/
+
+# node-lambda configuration
+context.json
+event.json
+event_sources.json
+deploy.env
 
 # Logs
 logs
