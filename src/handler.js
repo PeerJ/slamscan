@@ -56,17 +56,21 @@ module.exports = function(event, context, callback) {
         },
         function(details, isInfected, next) {
           console.log('sns %s isInfected %s', key, isInfected);
-          notifySns(
-            getSns(),
-            config.get('sns-topic-arn'),
-            bucket,
-            key,
-            isInfected,
-            details,
-            function(err) {
-              next(err);
-            }
-          );
+          if (isInfected) {
+            notifySns(
+              getSns(),
+              config.get('sns-topic-arn'),
+              bucket,
+              key,
+              isInfected,
+              details,
+              function(err) {
+                next(err);
+              }
+            );
+          } else {
+            next();
+          }
         }
       ], function(err) {
         callback(err);
