@@ -20,11 +20,6 @@ module.exports = function(event, context) {
     return context.done();
   }
 
-  var topicArn = config.get('sns-topic-arn');
-  var clamscan = getClamscan();
-  var s3 = getS3();
-  var sns = getSns();
-
   async.parallel({
     dbDownload: downloadClamscanDbFiles,
     initClamscan: initClamscan
@@ -41,13 +36,13 @@ module.exports = function(event, context) {
       async.waterfall([
         function(next) {
           console.log('bucket %s key %s', bucket, key);
-          downloadFileFromBucket(s3, bucket, key, function(err, tmpFile) {
+          downloadFileFromBucket(getS3(), bucket, key, function(err, tmpFile) {
             next(err, tmpFile);
           });
         },
         function(tmpFile, next) {
           scanFile(
-            clamscan,
+            getClamscan(),
             tmpFile,
             function(err, details, isInfected) {
               console.log(
@@ -62,8 +57,8 @@ module.exports = function(event, context) {
         function(details, isInfected, next) {
           console.log('sns %s isInfected %s', key, isInfected);
           notifySns(
-            sns,
-            topicArn,
+            getSns(),
+            config.get('sns-topic-arn'),
             bucket,
             key,
             isInfected,
