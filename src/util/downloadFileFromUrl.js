@@ -1,5 +1,6 @@
 var util = require('util');
 var fs = require('fs');
+var fse = require('fs-extra');
 var request = require('request');
 var url = require('url');
 var validUrl = require('valid-url');
@@ -33,7 +34,12 @@ module.exports = function(downloadUrl, file, callback) {
         response.statusCode
       );
       fileStream.removeListener('finish', closeStream);
-      callback(util.format('Error: status code %d', response.statusCode));
+      fse.remove(file, function(error) {
+        if (error) {
+          return callback(error);
+        }
+        callback(util.format('Error: status code %d', response.statusCode));
+      });
     }
   }).pipe(fileStream);
 };
