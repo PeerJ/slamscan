@@ -1,6 +1,6 @@
 # Configuration
-config/local*.yaml
-config/production.yaml
+config/local*
+config/production
 
 # Local clamscan files
 *.zip
