@@ -18,6 +18,15 @@ describe('downloadClamscanDbFiles', function() {
   });
 
   describe('when files do not exist', function() {
+    beforeEach(function() {
+      sinon.stub(fs, 'exists')
+        .yields(false);
+    });
+
+    afterEach(function() {
+      fs.exists.restore();
+    });
+
     it('should download files', function(done) {
       downloadClamscanDbFiles(function(err) {
         if (err) {
@@ -31,7 +40,6 @@ describe('downloadClamscanDbFiles', function() {
   });
 
   describe('when files do exist', function() {
-
     beforeEach(function() {
       sinon.stub(fs, 'exists')
         .yields(true);
