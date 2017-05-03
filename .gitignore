@@ -1,7 +1,5 @@
-# Local configuration
-config/local.yaml
-
-# Local configuration
+# Configuration
+config/local*.yaml
 config/production.yaml
 
 # Local clamscan files
