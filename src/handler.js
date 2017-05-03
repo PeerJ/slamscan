@@ -11,13 +11,14 @@ var initClamscan = require('./initClamscan');
 var scanFile = require('./scanFile');
 
 module.exports = function(event, context, callback) {
-  console.log('Reading options from event:\n',
+  console.log('Reading options from event: %j',
     util.inspect(event, {depth: 5})
   );
 
   if (typeof (event.Records) === 'undefined') {
-    console.log('Unable to find event.Records event:%j', event);
-    return callback();
+    return callback(new Error(
+      util.format('Unable to find event. Records event: %j', event)
+    ));
   }
 
   async.parallel({

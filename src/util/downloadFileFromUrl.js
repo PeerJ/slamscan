@@ -8,7 +8,7 @@ module.exports = function(downloadUrl, file, callback) {
   /*jscs:disable*/
   if (!validUrl.is_uri(downloadUrl)) {
     /*jscs:enable*/
-    return callback(util.format('Error: Invalid uri %s', downloadUrl));
+    return callback(new Error(util.format('Error: Invalid uri %s', downloadUrl)));
   }
 
   console.log('Downloading %s to %s', downloadUrl, file);
