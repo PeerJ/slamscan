@@ -4,3 +4,6 @@ db-files:
   - test://test.test/test/test.3
   - test://test.test/test/test.4
   - test://test.test/test/test.5
+
+clamscan:
+  testing_mode: true
