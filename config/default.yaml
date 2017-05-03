@@ -46,7 +46,3 @@ clamscan:
 
   # If clamdscan is found and active it will be used by default
   preference: clamscan
-
-tmp:
-  clamscan:
-    path: /tmp/clamscan

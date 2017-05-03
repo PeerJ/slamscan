@@ -7,7 +7,6 @@ var appUtil = require('./util');
 var downloadFileFromBucket = appUtil.downloadFileFromBucket;
 var notifySns = appUtil.notifySns;
 var downloadClamscanDbFiles = require('./downloadClamscanDbFiles');
-var initClamscan = require('./initClamscan');
 var scanFile = require('./scanFile');
 
 module.exports = function(event, context, callback) {
@@ -22,8 +21,7 @@ module.exports = function(event, context, callback) {
   }
 
   async.parallel({
-    dbDownload: downloadClamscanDbFiles,
-    initClamscan: initClamscan
+    downloadClamscanDbFiles: downloadClamscanDbFiles
   }, function(err) {
     if (err) {
       console.log('Failed to download clamscandb files. Exiting');
