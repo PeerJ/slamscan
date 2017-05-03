@@ -1,9 +1,5 @@
-module.exports = function(clamscan, file, callback) {
-  console.log(file);
-  clamscan.is_infected(file, function(err, scannedFile, isInfected) {
-    if (err) {
-      console.log(err);
-    }
-    callback(err, scannedFile, isInfected);
-  });
-};
+var config = require('config');
+var Clamscan = require('clamscan');
+var clamscan = new Clamscan(config.get('clamscan'));
+
+module.exports = clamscan.is_infected.bind(clamscan);

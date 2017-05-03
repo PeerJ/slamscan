@@ -13,21 +13,12 @@ module.exports = function(callback) {
         if (exists) {
           next();
         } else {
-          fse.copy(exe, tmpExe, {dereference: true}, function(err) {
-            next(err);
-          });
+          fse.copy(exe, tmpExe, {dereference: true}, next);
         }
       });
     },
     function(next) {
-      fs.chmod(tmpExe, 0755, function(err) {
-        next(err);
-      });
+      fs.chmod(tmpExe, 0755, next);
     }
-  ], function(err) {
-    if (err) {
-      console.log(err);
-    }
-    callback(err);
-  });
+  ], callback);
 };

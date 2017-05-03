@@ -1,7 +1,7 @@
 var downloadFileFromUrl = require('./downloadFileFromUrl');
-var downloadFileFromBucket = require('./downloadFileFromBucket');
+var notifySns = require('./notifySns');
 
 module.exports = {
   downloadFileFromUrl: downloadFileFromUrl,
-  downloadFileFromBucket: downloadFileFromBucket
+  notifySns: notifySns
 };

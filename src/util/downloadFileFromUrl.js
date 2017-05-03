@@ -1,9 +1,8 @@
 var util = require('util');
-var fs = require('fs');
-var fse = require('fs-extra');
-var request = require('request');
 var url = require('url');
 var validUrl = require('valid-url');
+var downloadFileFromBucket = require('./downloadFileFromBucket');
+var downloadFileFromHttp = require('./downloadFileFromHttp');
 
 module.exports = function(downloadUrl, file, callback) {
   /*jscs:disable*/
@@ -12,37 +11,26 @@ module.exports = function(downloadUrl, file, callback) {
     return callback(util.format('Error: Invalid uri %s', downloadUrl));
   }
 
-  var urlPath = url.parse(downloadUrl);
-  console.info('Downloading %s -> %s', urlPath.pathname, file);
-  var fileStream = fs.createWriteStream(file);
+  console.log('Downloading %s to %s', downloadUrl, file);
 
-  function closeStream() {
-    console.log('Finished downloading %s (stream closed)', file);
-    callback(null, file);
+  var parsedUrl = url.parse(downloadUrl);
+
+  switch (parsedUrl.protocol) {
+    case 's3:': {
+      return downloadFileFromBucket(
+        parsedUrl.hostname,
+        parsedUrl.pathname,
+        file,
+        callback
+      );
+    }
+
+    default: {
+      return downloadFileFromHttp(
+        downloadUrl,
+        file,
+        callback
+      );
+    }
   }
-
-  fileStream.on('finish', closeStream);
-
-  request.get(downloadUrl)
-    .on('response', function(response) {
-      if (response.statusCode !== 200) {
-        console.error('Error downloading %s Code: %d',
-          downloadUrl,
-          response.statusCode
-        );
-        fileStream.removeListener('finish', closeStream);
-        fse.remove(file, function(error) {
-          if (error) {
-            return callback(error);
-          }
-          callback(util.format('Error: status code %d', response.statusCode));
-        });
-      }
-    })
-    .on('error', function(err) {
-      console.error('Err downloading %s. Err: %s', downloadUrl, err);
-      fileStream.removeListener('finish', closeStream);
-      callback(err);
-    })
-    .pipe(fileStream);
 };
