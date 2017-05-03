@@ -72,6 +72,10 @@ describe('downloadFileFromUrl', function() {
 
         file.should.be.exactly('s3');
         downloadFileFromBucketStub.calledOnce.should.be.exactly(true);
+        downloadFileFromBucketStub.calledWith(
+          'test.test',
+          'test/test'
+        ).should.be.exactly(true);
 
         done();
       }

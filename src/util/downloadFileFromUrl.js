@@ -19,7 +19,7 @@ module.exports = function(downloadUrl, file, callback) {
     case 's3:': {
       return downloadFileFromBucket(
         parsedUrl.hostname,
-        parsedUrl.pathname,
+        parsedUrl.pathname.slice(1),
         file,
         callback
       );
