@@ -1,5 +1,7 @@
 var downloadFileFromUrl = require('./downloadFileFromUrl');
+var downloadFileFromBucket = require('./downloadFileFromBucket');
 
 module.exports = {
-  downloadFileFromUrl: downloadFileFromUrl
+  downloadFileFromUrl: downloadFileFromUrl,
+  downloadFileFromBucket: downloadFileFromBucket
 };

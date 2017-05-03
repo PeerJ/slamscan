@@ -1,4 +1,4 @@
-var downloadFileFromBucket = require('./downloadFileFromBucket');
+var downloadFileFromBucket = require('./util/downloadFileFromBucket');
 var downloadClamscanDbFiles = require('./downloadClamscanDbFiles');
 var downloadFileFromUrl = require('./util/downloadFileFromUrl');
 var getClamscan = require('./getClamscan');

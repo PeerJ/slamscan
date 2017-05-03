@@ -15,11 +15,20 @@ module.exports = function(s3, bucket, key, callback) {
   var tmpFile = temp.path({suffix: ext});
   console.log('Download src file s3://%s/%s to %s', bucket, key, tmpFile);
   var file = fs.createWriteStream(tmpFile);
-  var save = s3.getObject({
-    Bucket: bucket,
-    Key: key
-  }).createReadStream().pipe(file);
-  save.on('close', function() {
-    callback(null, tmpFile);
-  });
+
+  s3
+    .getObject({
+      Bucket: bucket,
+      Key: key
+    })
+    .createReadStream()
+    .pipe(file)
+    .on('error', function(error) {
+      console.log('Error downloading s3://%s/%s to %s', bucket, key, tmpFile);
+      callback(error);
+    })
+    .on('close', function() {
+      console.log('Downloaded s3://%s/%s to %s', bucket, key, tmpFile);
+      callback(null, tmpFile);
+    });
 };
