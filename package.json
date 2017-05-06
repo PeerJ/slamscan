@@ -3,7 +3,7 @@
   "description": "Use lambda to scan s3 files on upload. S3 LAMbda clamSCAN",
   "author": "Patrick McAndrew <patrick@peerj.com>",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": {
     "type": "git",
