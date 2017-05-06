@@ -1,102 +1,123 @@
-NOT WORKING!!!!
----
-We're having an issue getting the clamscan executable to execute in labmda.  Hopefully will be able to eventually
-pick this up again and resolve
+```plaintext
+ _______    ___      _______  __   __          _______  _______  _______  __    _ 
+|       |  |   |    |   _   ||  |_|  |        |       ||       ||   _   ||  |  | |
+|  _____|  |   |    |  |_|  ||       |        |  _____||       ||  |_|  ||   |_| |
+| |_____   |   |    |       ||       |        | |_____ |       ||       ||       |
+|_____  |  |   |___ |       ||       |        |_____  ||      _||       ||  _    |
+ _____| |  |       ||   _   || ||_|| |         _____| ||     |_ |   _   || | |   |
+|_______|3 |_______||__| |__||_|   |_|bda Clam|_______||_______||__| |__||_|  |__|
+```
 
-S3 LAMbda clamSCAN
----
-The goal of this project is to efficiently virus scan files that are uploaded to a s3 bucket
-and notify the results of the scan.
+The goal of this project is to efficiently virus scan files that are uploaded to a S3 bucket and notify the results of the scan.
 
-This can be achieved in a reasonably cost effictive manner using Lambda, NodeJs and Clamscan.
+This can be achieved in a reasonably cost effictive manner using Lambda, `node` and `clamscan`.
 
-S3 is configured to call a nodejs handler when a s3 put event is received.  The nodejs handler calls out to clamscan
-and then publishes to SNS with the results.  SNS can be configured to post to a webhook or put in a SQS queue for
-later processing.
+S3 is configured to call a `node` handler when a S3 `PUT` event is received.  The `node` handler calls out to `clamscan` and then publishes to SNS with the results.  SNS can be configured to `POST` to a webhook or `PUT` in a SQS queue for later processing.
 
-Unfortunately due to size limitations, its not possible to keep the virus definitions in the package, but rather
-they need to be uploaded to s3 where the lambda process can then download.  If you're processing files quite closely
-together, the lambda container may still be around and so the virus definitions won't need to be re-downloaded.
+Unfortunately due to size limitations, its not possible to keep the virus definitions in the package, but rather they need to be uploaded to S3 where the Lambda process can then download.  If you're processing files quite closely together, the Lambda container may still be around and so the virus definitions won't need to be re-downloaded.
 
-Requirements
----
-1. AWS Account Configured with:
-   1. S3 Bucket to trigger events
-   1. SNS Topic for notification
-   1. IAM Resources
-      1. A IAM user for Node Lambda deployment with an access key/secret
-         * Quick Start: `AWSLambdaFullAccess`
-      1. A `lambda_exec` role
-         * IAM/Roles/New Role
-         * AWS Lambda Service Type
-         * Quick Start: Add Policies: `AmazonS3ReadOnlyAccess` & `AmazonSNSFullAccess`
-         * Better Security: Publish Access to your SNS Topic Arn & `ListBuckets`/`GetObject` Access to your S3 Buckets that you want to scan
-         * CloudWatch is very useful for debugging - you will need to add permissions for that as well if desired.
-1. NodeJS installed
 
-Installation
----
-1. Clone this repo `git clone https://github.com/PeerJ/slamscan.git`
-1. Configure your SNS topic arn in `config/default.json`
-1. Run `npm install`
+## Installation
 
-Clamscan
----
-Clamscan is currently the only supported virus scanning engine and need to be configured to
-run under AWS Lambda.
-1. Start an amazon image
-1. Login and run `sudo yum groupinstall "Development Tools"`
-1. Run `sudo yum install openssl openssl-devel`
-1. Download latest package and untarzip
-1. Run `./configure --enable-static=yes --enable-shared=no --disable-unrar --prefix=/var/task`
-1. Run `make`
-1. Run `sudo make install`
-1. Copy files to the same relative folder names in `slamscan/bin` & `slamscan/lib64`
-   * `/var/task/bin/clamscan`
-   * `/var/task/lib64/*`
-   * `/var/task/lib64/pkgconfig/*`
+### Build the `clamscan` binaries
+`clamscan` is currently the only supported virus scanning engine and need to be configured to
+run under Lambda. There are a couple of ways to do this:
 
-You'll now need to update the virus definition files
-1. You probably want to change ownership to ec2-user. `sudo chown -R ec2-user /var/task`
-1. `cp /var/task/etc/freshclam.conf.sample /var/task/etc/freshclam.conf` and update
-   * Minimally, you'll need to adjust the line below `#Comment or remove the line below`
+#### Build the binaries on the `amazonlinux` Docker image
+1. `docker pull amazonlinux`
+1. `docker run -it amazonlinux`
+1. Follow the build/update instructions below.
+
+#### Build the binaries on an actual EC2 instance
+
+1. Spin up an EC2 instance and assume the `ec2-user`.
+1. `sudo yum groupinstall "Development Tools"`
+1. `sudo yum install openssl openssl-devel wget`
+1. `wget https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz`
+1. `tar -xvf clamav-0.99.2.tar.gz`
+1. `cd clamav-0.99.2`
+1. `./configure --enable-static=yes --enable-shared=no --disable-unrar --prefix=/var/task`
+1. `make`
+1. `sudo make install`
+
+#### Update the virus definition files
+1. `sudo chown -R ec2-user /var/task`
+1. `touch /var/task/etc/freshclam.conf`
+   * or `cp /var/task/etc/freshclam.conf.sample /var/task/etc/freshclam.conf` and follow the instruction to  `#Comment or remove the line below`
 1. `mkdir /var/task/share/clamav`
 1. `/var/task/bin/freshclam`
-1. You'll need to upload the files from `/var/task/bin/freshclam` to a location in s3.
-   You'll need to make sure that the `lambda_exec_role` has read permission to these files, or alternatively, just
-   give everyone read access.
-
-You can verify that it works
 1. `/var/task/bin/clamscan /var/task/test/resources/EICAR-AV-Test`
    * Should return `/var/task/test/resources/EICAR-AV-Test: Eicar-Test-Signature FOUND`
 
-Deployment
----
-Node Lambda is strongly encouraged for deployment as its much quicker.  Alternatively, you can manually zip up and upload.
-1. Run `./node_modules/node-lambda/bin/node-lambda setup` or alternatively configure your .env file as per node-lambda requirements.
-   1. **.env is gitignored.  For you own sake, please DO NOT check in your aws credentials**
-   1. You should base the timeouts on our expected max filesize upload. Running clamscan locally on a reasonably powerful
-      laptop, clamscan takes 9seconds to run a simple text file, so a minimum of around 20s and most likely around 45-60s.
-      Memory is less of a issue and 128mb should be ok in most cases.
-1. Run `./node_modules/node-lambda/bin/node-lambda deploy`
+#### Copy the files to where they need to be
+1. You'll need to upload the virus definition files from `/var/task/share/clamav` to a location in S3, or some HTTP/HTTPS accessible location.
+   * Make sure that the `lambda_exec` IAM role has `read` permissions on these files.
+   * Add the URIs to the files to your configuration under `db-files`
+1. You'll need to copy the `clamscan` binary in `/var/task/bin/clamscan` to the `bin` directory in this project
+1. You'll need to copy the `lib64` libraries in `/var/task/lib64` to the `lib64` directory in this project
 
-S3 Bucket Configuration
----
-Once you deploy your lambda function, make a note of the arn.  Go to your s3 bucket properties and add under Events.
-You'll most likely want to subscribe to at least put requests.
 
-Local Testing
----
-If you edit, `event.json` to change to your s3 bucket with an existing file, you can verify that you're able
-to download from s3, run a clamscan locally, and publish to your sns topic.  However, this will use the account
-credentials of the aws user in the .env, so they would also need the permissions that the lambda_exec_role has.
-Run `./node_modules/node-lambda/bin/node-lambda run` to do so.
+### Set up your AWS Infrastructure
+1. S3 Bucket with files to scan
+1. SNS Topic to notify on infected file discovery
+1. IAM Resources
+    1. An IAM user with an access key/secret so you can `node-lambda run` and `node-lambda deploy`
+       * Quick Start: 
+          * `AWSLambdaFullAccess`
+    1. A `lambda_exec` role (Lambda Service type role)
+       * Quick Start: 
+          * `AmazonS3ReadOnlyAccess`
+          * `AmazonSNSFullAccess`
+       * Better Security: 
+          * S3 Bucket: `ListBuckets` & `GetObject`
+          * SNS Topic: Publish access
+1. CloudWatch is very useful for debugging - you will need to add permissions for that as well if desired.
 
-Tests
----
-There is a test suit that can be run by `npm test`.
 
-Contributing
----
-Pull requests welcome.  Please ensure existing standards and tests pass.
+### Configure and deploy the Lambda function
+```sh
+# Install dependencies
+brew install node
+npm install -g node-lambda
+
+
+# Setup the package
+npm install # or `yarn install`
+
+
+# Provide your `slamscan` configuration by changing the `DEFINE-ME` values in default.yaml to the relevant ones for you
+cp config/test.yaml config/local.yaml
+emacs config/local.yaml # or `vim` or `nano` or whatever.
+
+
+# Initialize and provide some `node-lambda` configuration
+node-lambda setup
+
+emacs .env # or `vim` or `nano` or whatever.
+# You'll want to set the following, but experimentation is encouraged
+# AWS_MEMORY_SIZE=1024 # `clamscan` is pretty RAM hungry these days, per https://github.com/widdix/aws-s3-virusscan/issues/12
+# AWS_TIMEOUT=120 # `clamscan` takes a bit of time to spin up, plus downloading your virus definitions & files to scan might take a while
+# AWS_RUN_TIMEOUT=120
+# AWS_PROFILE=<your local `aws-cli` configured credentials in a profile>
+
+cp test/resources/event.json ./event.json 
+# Might as well use the skeleton that's already there and just change the `DEFINE-ME`s
+emacs event.json # or `vim` or `nano` or whatever.
+
+
+# Run your lambda locally
+node-lambda run
+
+
+# Deploy your lambda
+node-lambda deploy
+
+```
+
+### Configure your Lambda function triggers
+Login to the AWS Console and add the appropriate (S3 `PUT`) triggers [here](https://console.aws.amazon.com/lambda/home#/functions/slamscan?tab=triggers).
+
+
+## Contributing
+Pull requests are welcome.  Please ensure existing standards and tests pass by running `npm test`.
 
