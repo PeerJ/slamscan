@@ -12,6 +12,8 @@ module.exports = function(bucket, key, file, callback) {
     )));
   }
 
+  key = decodeURIComponent(key);
+
   s3
     .getObject({
       Bucket: bucket,

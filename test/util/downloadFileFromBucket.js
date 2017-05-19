@@ -61,5 +61,30 @@ describe('downloadFileFromBucket', function() {
         }
       );
     });
+
+    it('should `decodeURIComponent` on the key', function(done) {
+      var stubBucketAndKey = {
+        Bucket: 'bucket',
+        Key: 'folder/file%3Awith%3Acolons'
+      };
+      downloadFileFromBucket(
+        stubBucketAndKey.Bucket,
+        stubBucketAndKey.Key,
+        temp.path(),
+        function(err) {
+          if (err) {
+            return done(err);
+          }
+
+          s3GetObjectStub.calledOnce.should.be.exactly(true);
+          s3GetObjectStub.calledWith({
+            Bucket: stubBucketAndKey.Bucket,
+            Key: decodeURIComponent(stubBucketAndKey.Key)
+          }).should.be.exactly(true);
+
+          done();
+        }
+      );
+    });
   });
 });
