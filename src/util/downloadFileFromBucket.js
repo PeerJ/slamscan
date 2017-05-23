@@ -1,7 +1,7 @@
 var util = require('util');
 var fs = require('fs');
 var AWS = require('aws-sdk');
-var s3 = new AWS.S3();
+var s3 = new AWS.S3({signatureVersion: 'v4'});
 
 module.exports = function(bucket, key, file, callback) {
   if (!bucket.length || !key.length) {
