@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+es5
+esm
+docs
+coverage
+.nyc_output
+.serverless
+.webpack
+.dynamodb
+.idea

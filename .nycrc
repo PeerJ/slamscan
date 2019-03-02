@@ -1,0 +1,53 @@
+{
+  "extension": [
+    ".jsx"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/config/**",
+    "**/es5/**",
+    "**/esm/**",
+    "**/docs/**",
+    "**/coverage/**",
+    "**/src/job-applications/**",
+    "**/src/letters/**",
+    "**/src/resumes/**",
+    "**/src/resume-custom-content/**",
+    "**/.nyc_output/**",
+    "**/test/**",
+    "packages/*/*.js",
+    "*.js"
+  ],
+  "reporter": [
+    "text-summary",
+    "lcov"
+  ],
+  "require": [
+    "./babel.register.js"
+  ],
+  "cache": true,
+  "all": true,
+  "check-coverage": false,
+  "sourceMap": false,
+  "instrument": false,
+  "watermarks": {
+    "lines": [
+      70,
+      90
+    ],
+    "functions": [
+      70,
+      90
+    ],
+    "branches": [
+      70,
+      90
+    ],
+    "statements": [
+      70,
+      90
+    ]
+  }
+}

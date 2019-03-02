@@ -10,33 +10,82 @@
     "url": "git+ssh://git@github.com:PeerJ/slamscan.git"
   },
   "dependencies": {
-    "app-root-path": "^2.0.1",
-    "async": "^2.4.0",
-    "aws-sdk": "^2.48.0",
-    "clamscan": "^0.8.4",
-    "config": "^1.26.1",
-    "fs-extra": "^3.0.0",
-    "js-yaml": "^3.8.3",
-    "request": "^2.81.0",
-    "temp": "^0.8.3",
-    "valid-url": "^1.0.9"
+    "@randy.tarampi/lambda-logger": "~3.9.4",
+    "@randy.tarampi/serverless": "~3.9.4",
+    "clamscan": "~0.8.4",
+    "md5": "~2.2.1",
+    "temp": "~0.9.0"
   },
   "devDependencies": {
-    "istanbul": "^0.4.5",
-    "jscs": "^3.0.7",
-    "jshint": "^2.9.4",
-    "mocha": "^3.3.0",
-    "rewire": "^2.5.2",
-    "should": "^11.2.1",
-    "sinon": "^2.2.0"
+    "@babel/cli": "~7.2.3",
+    "@babel/core": "~7.3.4",
+    "@babel/plugin-proposal-class-properties": "~7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "~7.3.4",
+    "@babel/plugin-transform-property-literals": "~7.2.0",
+    "@babel/polyfill": "~7.2.5",
+    "@babel/preset-env": "~7.3.4",
+    "@babel/register": "~7.0.0",
+    "babel-eslint": "~10.0.1",
+    "babel-loader": "~8.0.5",
+    "babel-plugin-istanbul": "~5.1.1",
+    "babel-plugin-lodash": "~3.3.4",
+    "babel-plugin-minify-replace": "~0.5.0",
+    "copy-webpack-plugin": "~5.0.0",
+    "del": "~3.0.0",
+    "eslint-plugin-import": "~2.16.0",
+    "gulp": "~4.0.0",
+    "gulp-eslint": "~5.0.0",
+    "gulp-if": "~2.0.2",
+    "gulp-mocha": "~6.0.0",
+    "mocha": "~6.0.2",
+    "nyc": "~13.3.0",
+    "serverless": "~1.38.0",
+    "serverless-mocha-plugin": "~1.9.2",
+    "serverless-webpack": "~5.2.0",
+    "sinon": "~7.2.6",
+    "vinyl-paths": "~2.1.0",
+    "webpack": "~4.29.6",
+    "webpack-bundle-analyzer": "~3.1.0",
+    "webpack-cli": "~3.2.3",
+    "webpack-node-externals": "~1.7.2",
+    "webpack-permissions-plugin": "~1.0.0"
   },
   "scripts": {
-    "jshint": "./node_modules/.bin/jshint */**.js",
-    "jscs": "./node_modules/.bin/jscs */**.js",
-    "lint": "npm run jshint && npm run jscs",
-    "pretest": "NODE_ENV=test npm run lint",
-    "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec -r should",
-    "posttest": "NODE_ENV=test ./node_modules/.bin/istanbul check-coverage"
+    "postinstall": "./bin/build.sh",
+    "clean": "gulp -LLLL --color clean",
+    "cover:gulp": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=/usr/local/bin/clamscan} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=/usr/local/bin/freshclam} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-gulp gulp -LLLL --color test",
+    "cover:sls": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=/usr/local/bin/clamscan} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=/usr/local/bin/freshclam} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-sls sls invoke test --path test/sls",
+    "cover:collect": "mkdir -p .nyc_output/ && cp -r .nyc_output-gulp/ .nyc_output && cp -r .nyc_output-sls/ .nyc_output && nyc report --reporter=lcov",
+    "cover": "rm -rf coverage/ .nyc_output/; npm run pretest && npm run cover:gulp && npm run cover:sls && npm run cover:collect",
+    "pretest": "gulp -LLLL --color lint",
+    "test": "npm run test:actual",
+    "test:actual": "npm run test:actual:gulp && npm run test:actual:sls",
+    "test:actual:gulp": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=/usr/local/bin/clamscan} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=/usr/local/bin/freshclam} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} gulp -LLLL --color test",
+    "test:actual:sls": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=/usr/local/bin/clamscan} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=/usr/local/bin/freshclam} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.js",
+    "deploy": "sls deploy --stage deploy",
+    "seed": "sls invoke --stage deploy --function updateDefinitions",
+    "remove": "sls remove --stage deploy"
   },
-  "engine": "node >= 4.3.2"
+  "engines": {
+    "node": ">=8"
+  },
+  "greenkeeper": {
+    "commitMessages": {
+      "initialBadge": "docs(greenkeeper): Add Greenkeeper badge.",
+      "initialDependencies": "chore(greenkeeper): Update dependencies.",
+      "initialBranches": "chore(greenkeeper): Whitelist greenkeeper branches.",
+      "dependencyUpdate": "chore(greenkeeper): ${dependency}@${version}.",
+      "devDependencyUpdate": "chore(greenkeeper): ${dependency}@${version}.",
+      "dependencyPin": "fix(greenkeeper): Pin ${dependency}@${oldVersion}.",
+      "devDependencyPin": "fix(greenkeeper): Pin ${dependency}@${oldVersion}."
+    },
+    "prTitles": {
+      "initialPR": "chore(greenkeeper): Update dependencies and enable Greenkeeper",
+      "initialPrBadge": "docs(greenkeeper): Add Greenkeeper badge and enable Greenkeeper",
+      "initialPrBadgeOnly": "docs(greenkeeper): Add Greenkeeper badge",
+      "initialSubgroupPR": "chore(greenkeeper): Update dependencies for ${group}",
+      "basicPR": "chore(greenkeeper): Update ${dependency}",
+      "groupPR": "chore(greenkeeper): Update ${dependency} for ${group}"
+    }
+  }
 }
