@@ -24,9 +24,3 @@ cp /tmp/usr/lib64/* ./build/lib/.
 
 mkdir -p ./build/etc
 echo "DatabaseMirror database.clamav.net" > ./build/etc/freshclam.conf
-
-mkdir -p ./build/defs
-LD_LIBRARY_PATH=$(pwd)/build/lib/ ./build/bin/freshclam \
-    --config-file=./build/etc/freshclam.conf \
-    --user="$(whoami)" \
-    --datadir=./build/defs
