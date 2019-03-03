@@ -1,13 +1,17 @@
 {
   "name": "slamscan",
   "description": "Use lambda to scan s3 files on upload. S3 LAMbda clamSCAN",
-  "author": "Patrick McAndrew <patrick@peerj.com>",
+  "author": {
+    "name": "Randy Tarampi",
+    "email": "rt@randytarampi.ca",
+    "url": "https://www.randytarampi.ca"
+  },
   "license": "MIT",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:PeerJ/slamscan.git"
+    "url": "git+ssh://git@github.com/randytarampi/slamscan.git"
   },
   "dependencies": {
     "@randy.tarampi/lambda-logger": "~3.9.4",
@@ -38,6 +42,7 @@
     "gulp-mocha": "~6.0.0",
     "mocha": "~6.0.2",
     "nyc": "~13.3.0",
+    "semantic-release": "^15.13.3",
     "serverless": "~1.38.0",
     "serverless-mocha-plugin": "~1.9.2",
     "serverless-webpack": "~5.2.0",
@@ -47,6 +52,10 @@
     "webpack-bundle-analyzer": "~3.1.0",
     "webpack-cli": "~3.2.3",
     "webpack-node-externals": "~1.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/randytarampi/slamscan/issues",
+    "email": "bugs@randytarampi.ca"
   },
   "scripts": {
     "postinstall": "./bin/build.sh",

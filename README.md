@@ -8,9 +8,7 @@
 |_______|3 |_______||__| |__||_|   |_|bda Clam|_______||_______||__| |__||_|  |__|
 ```
 
-The goal of this project is to efficiently virus scan files that are uploaded to a S3 bucket and notify the results of the scan.
-
-This can be achieved in a reasonably cost effective manner using Lambda, `node` and `clamscan`.
+Originally written in [2017](https://github.com/PeerJ/slamscan), and rewritten based off [upsidetravel/bucket-antivirus-function](https://github.com/upsidetravel/bucket-antivirus-function), the goal of this project was to efficiently virus scan files that are uploaded to a S3 bucket and notify the results of the scan. This is now just a relic that goes largely unused, but serves as a demo for the couple of people that wanted to see how I'd rewrite something in a "modern" way.
 
 S3 is configured to call a `node` handler when a S3 `PUT` event is received.  The `node` handler calls out to `clamscan` and then publishes to SNS with the results. SNS can be configured to `POST` to a webhook or `PUT` in a SQS queue for later processing.
 
