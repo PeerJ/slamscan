@@ -1,10 +1,8 @@
 const path = require("path");
 const slsw = require("serverless-webpack");
 const nodeExternals = require("webpack-node-externals");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
-const PermissionsWebpackPlugin = require("webpack-permissions-plugin");
 const util = require("./util");
 
 const {
@@ -12,30 +10,9 @@ const {
     resolveWebpackMode: resolveMode
 } = util;
 
-let buildFiles = [];
-
-Object.keys(require("./config/functions").default()).forEach(functionName => buildFiles = buildFiles.concat([
-    {
-        path: path.join(__dirname, `.webpack/${functionName}/bin/clamscan`),
-        fileMode: "755"
-    },
-    {
-        path: path.join(__dirname, `.webpack/${functionName}/bin/freshclam`),
-        fileMode: "755"
-    }
-]));
-
 const plugins = [
     new webpack.DefinePlugin({
         "global.GENTLY": false
-    }),
-    new CopyWebpackPlugin([
-        {from: "build/bin", to: "bin"},
-        {from: "build/etc", to: "etc"},
-        {from: "build/lib", to: "lib"}
-    ]),
-    new PermissionsWebpackPlugin({
-        buildFiles
     })
 ];
 
@@ -68,7 +45,6 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: util.babelLoaderExclusions,
                 loader: "babel-loader",
                 options: {
                     configFile: path.join(__dirname, "./babel.config.js"),

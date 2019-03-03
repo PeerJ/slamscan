@@ -15,6 +15,11 @@ provider:
   environment: ${file(./config/env.yml):${self:provider.stage}.environment}
 
 
+layers:
+  clamAv:
+    description: ClamAV binaries from the `amazonlinux:2` docker image
+    path: build
+
 package:
   individually: true
 

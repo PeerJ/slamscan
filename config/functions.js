@@ -14,7 +14,10 @@ module.exports.default = () => {
             }),
             onError: {
                 Ref: "SNSTopicLambdaDeadLetterQueue"
-            }
+            },
+            layers: [
+                {Ref: "ClamAvLambdaLayer"}
+            ]
         },
         updateDefinitions: {
             description: "Use `freshclam` to keep threat definitions up to date",
@@ -28,7 +31,10 @@ module.exports.default = () => {
             ],
             onError: {
                 Ref: "SNSTopicLambdaDeadLetterQueue"
-            }
+            },
+            layers: [
+                {Ref: "ClamAvLambdaLayer"}
+            ]
         }
     };
 };
