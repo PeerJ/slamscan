@@ -1,0 +1,28 @@
+language: node_js
+dist: trusty
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: '10'
+    - node_js: '11'
+node_js:
+  - '8'
+  - '11'
+  - '10'
+cache:
+  timeout: 1200
+  directories:
+    - "$HOME/.npm"
+before_install:
+  - uname -a
+  - lscpu
+  - npm install -g npm
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - npm run pretest
+  - npm run cover
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
