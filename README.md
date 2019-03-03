@@ -49,23 +49,25 @@ npm run cover
 # Deployment
 
 ```bash
-# The equivalent of `npx sls deploy --stage deploy`
+# The equivalent of `NODE_ENV=prd npx sls deploy --stage deploy`
 npm run deploy
+
+# The equivalent of `npx sls invoke --stage deploy --function updateDefinitions`
+npm run seed
 ```
 
 # Configuration
 
-You'll need to do a couple of things in the AWS console before you're all good to go:
+You'll need to specify some S3 buckets for `scanFile` to monitor before you're all good to go:
 
-1. Specify some S3 buckets for `scanFile` to monitor.
-    1. Define `SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS` at deploy time, say `foo`, `bar` and `baz` to be created automatically.
+1. Define `SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS` at deploy time, say `foo`, `bar` and `baz` to be created automatically.
     ```bash
-    SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS='foo bar baz' npx sls deploy
+    SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS='foo bar baz' npm run deploy
     ```
-        1. This is **not recommended** since the bucket lifecycles are tied to the lifecycle of this serverless service – i.e. running `npx sls remove` will delete your buckets and their contents.
-    1. For existing S3 buckets, or otherwise self-managed buckets, add the appropriate (S3 `PUT`) triggers [here](https://console.aws.amazon.com/lambda/home#/functions/slamscan?tab=triggers).
-        1. The `scanFile` handler will need the `GetObject`, `GetObjectTagging`, `PutObject`, `PutObjectTagging` and `PutObjectVersionTagging` permissions on these buckets, possibly by adding some `IamRoleStatements` in [`serverless.yml`](./serverless.yml).
-
-1. Manually invoke the `updateDefinitions` lambda to seed the initial set of virus definitions.
+    - This is **not recommended** since the bucket lifecycles are tied to the lifecycle of this serverless service – i.e. running `npm run remove` will delete your buckets and their contents.
+1. For existing S3 buckets, or otherwise self-managed buckets, add the appropriate (S3 `PUT`) triggers [here](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/slamscan-deploy-scanFile?tab=triggers).
+    - The `scanFile` handler will need the `GetObject`, `GetObjectTagging`, `PutObject`, `PutObjectTagging` and `PutObjectVersionTagging` permissions on these buckets, possibly by
+        - adding some `IamRoleStatements` [per `iamRoleStatementForSourceBucketName` in `config/iamRoleStatementForSourceBucketName.js`](./config/iamRoleStatementForSourceBucketName.js),
+        - or attaching an inline policy to the `slamscan-deploy-us-east-1-lambdaRole`.
 
 
