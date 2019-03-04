@@ -33,3 +33,7 @@ script:
   - npm run cover
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+addons:
+  apt:
+    packages:
+      - libssl-dev
