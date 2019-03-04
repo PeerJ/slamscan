@@ -9,6 +9,12 @@ node_js:
   - '8'
   - '11'
   - '10'
+env:
+  global:
+    SLAMSCAN_FRESHCLAM_BINARY_PATH: ./build/bin/freshclam
+    SLAMSCAN_FRESHCLAM_CONFIG_PATH: ./build/etc/freshclam.conf
+    SLAMSCAN_CLAMSCAN_BINARY_PATH: ./build/bin/clamscan
+    SLAMSCAN_CLAMSCAN_DB_PATH: ./build/defs
 cache:
   timeout: 1200
   directories:
