@@ -1,10 +1,5 @@
 language: node_js
 dist: trusty
-matrix:
-  fast_finish: true
-  allow_failures:
-    - node_js: '10'
-    - node_js: '11'
 node_js:
   - '8'
   - '11'
@@ -37,6 +32,16 @@ after_script:
   - npm run cover:collect
   - npm run coveralls
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+before_deploy:
+  - git config --local user.name "$TRAVIS_AUTHOR_NAME"
+  - git config --local user.email "$TRAVIS_AUTHOR_EMAIL"
+deploy:
+  provider: script
+  script: npx semantic-release
+  skip_cleanup: true
+  on:
+    branch: master
+    node: 8
 addons:
   apt:
     packages:
