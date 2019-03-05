@@ -6,10 +6,11 @@ node_js:
   - '10'
 env:
   global:
-    SLAMSCAN_FRESHCLAM_BINARY_PATH: ./build/bin/freshclam
-    SLAMSCAN_FRESHCLAM_CONFIG_PATH: ./build/etc/freshclam.conf
-    SLAMSCAN_CLAMSCAN_BINARY_PATH: ./build/bin/clamscan
-    SLAMSCAN_CLAMSCAN_DB_PATH: ./build/defs
+    - SLAMSCAN_FRESHCLAM_BINARY_PATH=./build/bin/freshclam
+    - SLAMSCAN_FRESHCLAM_CONFIG_PATH=./build/etc/freshclam.conf
+    - SLAMSCAN_CLAMSCAN_BINARY_PATH=./build/bin/clamscan
+    - SLAMSCAN_CLAMSCAN_DB_PATH=./build/defs
+    - secure: i7lSrBoIF2GJvaY1ovFv4uyqOhgRYVxIvUIGlZN53DIW9ewSk+okIKpvKy13/vtCEk8fUdpcGzhTDp8R0wn6Uq6Lq4fUEl78ifOa9fGroQ7LVw4vZG2SNItATmfJBjQAq9lS7P8MfVKcJsAV0JcvCJVKaIFFnRVeFRhYbEEwcJW13+4dC/C+VbVM7ebCMoHszdGHdnt2juNHG/wPjE59GkCC+EFWz0bXkrRn24hz/hXRcQ/aF9a7nVMXix4xCwj6Yz2/qE5Rn5/wna5pUNvJHl4VYQMMi95G3hbtXpLlIq6+KD4nrtt65pvoQEhYUhhWDbDVWU3saD44u8fSoHU+E1MvogB4Yp1S2dk6QphpeS6g/aAqh+n6gVevkD6kamcvHERIKUhg89hd+cxY8BuLeWZCITmB4qj0oeSi0nbR5l57xmeplzZUdKMR0IzvUgFPZ1ITZk37ZqF9XOoElksqBx6nOJposJc2aniOTt8p5iPkwkiFpbZpaL0/MH49B74yWYFiSj6DBmSrVhSQaHvZS9Xmvh/z14S5ARZNOsMssXthAzu5odH1R2/VZbp4SsEwj0L6LPkAuzhVKENspfJ3z6Oa8mM59xgMhg7OQRWzXwQoJG1uKUI9KQyoTHGqXlwhxyWP//z8AAN8XTsKQnwCQeTBC1cnan6pAYcU+9yyA8g=
 cache:
   timeout: 1200
   directories:
