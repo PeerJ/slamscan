@@ -8,6 +8,13 @@
 |_______|3 |_______||__| |__||_|   |_|bda Clam|_______||_______||__| |__||_|  |__|
 ```
 
+[![Build status](https://img.shields.io/travis/com/randytarampi/slamscan.svg?style=flat-square)](https://travis-ci.com/randytarampi/slamscan) 
+[![Coverage status](https://img.shields.io/coveralls/randytarampi/slamscan.svg?style=flat-square)](https://coveralls.io/github/randytarampi/slamscan?branch=master) 
+[![Maintainability status](https://img.shields.io/codeclimate/maintainability-percentage/randytarampi/slamscan.svg?style=flat-square)](https://codeclimate.com/github/randytarampi/slamscan/maintainability)
+[![Waffle.io board](https://badge.waffle.io/randytarampi/randytarampi.github.io.svg?columns=all&style=flat-square)](https://waffle.io/randytarampi/randytarampi.github.io) 
+[![Analytics](https://ga-beacon.appspot.com/UA-50921068-1/beacon/github/randytarampi/me/tree/master/packages/slamscan?flat&useReferrer)](https://github.com/igrigorik/ga-beacon) 
+[![Greenkeeper badge](https://badges.greenkeeper.io/randytarampi/slamscan.svg)](https://greenkeeper.io/)
+
 Originally written in [2017](https://github.com/PeerJ/slamscan), and rewritten based off [upsidetravel/bucket-antivirus-function](https://github.com/upsidetravel/bucket-antivirus-function), the goal of this project was to efficiently virus scan files that are uploaded to a S3 bucket and notify the results of the scan. This is now just a relic that goes largely unused, but serves as a demo for the couple of people that wanted to see how I'd rewrite something in a "modern" way.
 
 S3 is configured to call a `node` handler when a S3 `PUT` event is received.  The `node` handler calls out to `clamscan` and then publishes to SNS with the results. SNS can be configured to `POST` to a webhook or `PUT` in a SQS queue for later processing.
@@ -16,8 +23,6 @@ Unfortunately due to size limitations, its not possible to keep the virus defini
 
 
 # Dependencies
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/randytarampi/slamscan.svg)](https://greenkeeper.io/)
 
 ```bash
 brew install nvm clamav
