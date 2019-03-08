@@ -31,6 +31,9 @@ script:
   - npm run cover:actual
 after_script:
   - npm run cover:collect
+  - ls -al
+  - ls -al coverage
+  - ls -al .nyc_output
   - npm run coveralls
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 before_deploy:
