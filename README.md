@@ -17,6 +17,8 @@ Unfortunately due to size limitations, its not possible to keep the virus defini
 
 # Dependencies
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/randytarampi/slamscan.svg)](https://greenkeeper.io/)
+
 ```bash
 brew install nvm clamav
 nvm install 8
