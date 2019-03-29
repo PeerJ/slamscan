@@ -46,7 +46,7 @@
     "mocha": "~6.0.2",
     "nyc": "~13.3.0",
     "semantic-release": "^15.13.3",
-    "serverless": "~1.39.0",
+    "serverless": "~1.40.0",
     "serverless-mocha-plugin": "~1.9.2",
     "serverless-webpack": "~5.2.0",
     "sinon": "~7.3.0",
