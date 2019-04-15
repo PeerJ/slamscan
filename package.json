@@ -51,7 +51,7 @@
     "serverless-webpack": "~5.2.0",
     "sinon": "~7.3.0",
     "vinyl-paths": "~2.1.0",
-    "webpack": "~4.29.6",
+    "webpack": "~4.30.0",
     "webpack-bundle-analyzer": "~3.1.0",
     "webpack-cli": "~3.3.0",
     "webpack-node-externals": "~1.7.2"
