@@ -16,7 +16,7 @@
   "dependencies": {
     "@randy.tarampi/lambda-logger": "~4.0.1",
     "@randy.tarampi/serverless": "~4.0.1",
-    "clamscan": "~0.8.5",
+    "clamscan": "~1.0.0",
     "md5": "~2.2.1",
     "temp": "~0.9.0"
   },
