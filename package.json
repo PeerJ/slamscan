@@ -40,7 +40,7 @@
     "del": "~4.1.0",
     "eslint-plugin-import": "~2.17.1",
     "gulp": "~4.0.0",
-    "gulp-eslint": "~5.0.0",
+    "gulp-eslint": "~6.0.0",
     "gulp-if": "~2.0.2",
     "gulp-mocha": "~6.0.0",
     "mocha": "^6.1.4",
