@@ -2,7 +2,7 @@ import Clamscan from "clamscan";
 
 export const CLAMSCAN_DB_FILES = ["main.cvd", "daily.cvd", "bytecode.cvd"];
 
-export const getClamscan = () => new Clamscan({
+export const getClamscan = () => new Clamscan().init({
     clamscan: {
         path: process.env.SLAMSCAN_CLAMSCAN_BINARY_PATH,
         db: process.env.SLAMSCAN_CLAMSCAN_DB_PATH,
@@ -16,10 +16,13 @@ export const getClamscan = () => new Clamscan({
     preference: "clamscan"
 });
 
-export const scanFile = file => new Promise((resolve, reject) => getClamscan().is_infected(file, (error, file, isInfected) => {
-    if (error) {
-        return reject(error);
-    }
+export const scanFile = file => getClamscan()
+    .then(scanner => new Promise((resolve, reject) => {
+        scanner.is_infected(file, (error, file, isInfected) => {
+            if (error) {
+                return reject(error);
+            }
 
-    return resolve(isInfected);
-}));
+            resolve(isInfected);
+        });
+    }));

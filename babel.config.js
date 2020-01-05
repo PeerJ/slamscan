@@ -6,7 +6,8 @@ module.exports = (api) => {
                 targets: {
                     node: "current"
                 },
-                useBuiltIns: "entry"
+                useBuiltIns: "entry",
+                corejs: 3
             }
         ]
     ];
@@ -32,7 +33,8 @@ module.exports = (api) => {
                         targets: {
                             node: "current"
                         },
-                        useBuiltIns: "entry"
+                        useBuiltIns: "entry",
+                        corejs: 3
                     }
                 ]
             ];
