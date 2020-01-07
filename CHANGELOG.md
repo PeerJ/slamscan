@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/randytarampi/slamscan/compare/v2.0.5...v3.0.0) (2020-01-07)
+
+
+### Features
+
+* **package:** Blindly upgrade our dependencies for the new year and support node@10. ([9c9cc82](https://github.com/randytarampi/slamscan/commit/9c9cc8294b6ab40920d44319c1168119491ec1f4))
+
+
+### BREAKING CHANGES
+
+* **package:** Really, this is more about dropping support for node@8, but AWS is disallowing creation of node@8 lambdas today anyways, per https://docs.aws.amazon.com/lambda/latest/dg/runtime-support-policy.html.
+
+Also, we'll also need to have real virus definitions on hand as the rewrite of `clamscan` dropped the testing mode. Which is unfortunate.
+
 ## [2.0.5](https://github.com/randytarampi/slamscan/compare/v2.0.4...v2.0.5) (2019-07-05)
 
 
