@@ -46,7 +46,7 @@
     "gulp-mocha": "^7.0.2",
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^16.0.0",
     "serverless": "^1.60.5",
     "serverless-mocha-plugin": "^1.11.0",
     "serverless-webpack": "^5.3.1",
