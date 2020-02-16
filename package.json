@@ -19,7 +19,7 @@
     "clamscan": "^1.2.0",
     "md5": "^2.2.1",
     "temp": "^0.9.1",
-    "snyk": "^1.274.0"
+    "snyk": "^1.290.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
