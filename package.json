@@ -50,7 +50,7 @@
     "serverless": "^1.60.5",
     "serverless-mocha-plugin": "^1.11.0",
     "serverless-webpack": "^5.3.1",
-    "sinon": "^8.0.2",
+    "sinon": "^9.0.2",
     "vinyl-paths": "^3.0.1",
     "webpack": "^4.41.5",
     "webpack-bundle-analyzer": "^3.6.0",
