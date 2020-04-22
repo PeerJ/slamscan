@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/randytarampi/slamscan/compare/v3.0.1...v3.0.2) (2020-04-22)
+
+
+### Bug Fixes
+
+* **package:** Update dependencies. ([7ee3d5c](https://github.com/randytarampi/slamscan/commit/7ee3d5c0f5f3213b0c960feb62215e13ddb13a5e)), closes [#90](https://github.com/randytarampi/slamscan/issues/90) [#91](https://github.com/randytarampi/slamscan/issues/91) [#93](https://github.com/randytarampi/slamscan/issues/93) [#94](https://github.com/randytarampi/slamscan/issues/94) [#95](https://github.com/randytarampi/slamscan/issues/95) [#96](https://github.com/randytarampi/slamscan/issues/96) [#97](https://github.com/randytarampi/slamscan/issues/97) [#98](https://github.com/randytarampi/slamscan/issues/98) [#99](https://github.com/randytarampi/slamscan/issues/99) [#100](https://github.com/randytarampi/slamscan/issues/100) [#101](https://github.com/randytarampi/slamscan/issues/101) [#102](https://github.com/randytarampi/slamscan/issues/102) [#103](https://github.com/randytarampi/slamscan/issues/103) [#104](https://github.com/randytarampi/slamscan/issues/104) [#106](https://github.com/randytarampi/slamscan/issues/106) [#107](https://github.com/randytarampi/slamscan/issues/107)
+
 ## [3.0.1](https://github.com/randytarampi/slamscan/compare/v3.0.0...v3.0.1) (2020-04-22)
 
 
