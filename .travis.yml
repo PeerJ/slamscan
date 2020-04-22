@@ -39,7 +39,6 @@ before_script:
   - $SLAMSCAN_FRESHCLAM_BINARY_PATH --version
   - sudo mkdir -p $SLAMSCAN_CLAMSCAN_DB_PATH
   - sudo chown -R $UID $SLAMSCAN_CLAMSCAN_DB_PATH
-  - sudo chown -R $UID .
   - $SLAMSCAN_FRESHCLAM_BINARY_PATH --datadir=$SLAMSCAN_CLAMSCAN_DB_PATH --config-file=$SLAMSCAN_FRESHCLAM_CONFIG_PATH
   - ls -al $SLAMSCAN_CLAMSCAN_DB_PATH
   - echo $SLAMSCAN_CLAMSCAN_BINARY_PATH
@@ -62,5 +61,6 @@ deploy:
     node: 10
 addons:
   apt:
+    update: true
     packages:
       - clamav
