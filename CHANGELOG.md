@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/randytarampi/slamscan/compare/v3.0.0...v3.0.1) (2020-04-22)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([9218283](https://github.com/randytarampi/slamscan/commit/92182834a0620dd0e3a48ce4b5b2b87fd15cc426))
+
 # [3.0.0](https://github.com/randytarampi/slamscan/compare/v2.0.5...v3.0.0) (2020-01-07)
 
 
