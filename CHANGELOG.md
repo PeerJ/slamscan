@@ -1,3 +1,20 @@
+## [3.0.3](https://github.com/randytarampi/slamscan/compare/v3.0.2...v3.0.3) (2020-04-29)
+
+
+### Bug Fixes
+
+* package.json, package-lock.json & .snyk to reduce vulnerabilities ([97ddbe4](https://github.com/randytarampi/slamscan/commit/97ddbe44cf19012153fc8fc3da17bc2a8c62d671))
+* package.json, package-lock.json & .snyk to reduce vulnerabilities ([46d791d](https://github.com/randytarampi/slamscan/commit/46d791d7e4a292109a76ca95cb3a61239eca76ea))
+* package.json, package-lock.json & .snyk to reduce vulnerabilities ([2c3e434](https://github.com/randytarampi/slamscan/commit/2c3e4341e547fc07ce333451cf060589a431a4d9))
+* upgrade [@randy](https://github.com/randy).tarampi/lambda-logger from 6.1.15 to 6.1.21 ([ba5ba84](https://github.com/randytarampi/slamscan/commit/ba5ba84f19d4be15fecbf9a085dbf6d26ae19517))
+* upgrade [@randy](https://github.com/randy).tarampi/lambda-logger from 6.1.15 to 6.1.21 ([0305bf2](https://github.com/randytarampi/slamscan/commit/0305bf2c886b7f90a4543296fe9e7af0cea809f6))
+* upgrade coveralls from 3.0.13 to 3.1.0 ([a235e7c](https://github.com/randytarampi/slamscan/commit/a235e7c1b32e12b99c1b504fff19a1dc2ffa586b))
+* upgrade coveralls from 3.0.13 to 3.1.0 ([c1591fe](https://github.com/randytarampi/slamscan/commit/c1591fea4644f45e248e8765a282fa383cf47d41))
+* upgrade mocha from 7.1.1 to 7.1.2 ([141633f](https://github.com/randytarampi/slamscan/commit/141633f9ce081cf6e195f64f5ff074d51c98da55))
+* upgrade mocha from 7.1.1 to 7.1.2 ([d38d8d1](https://github.com/randytarampi/slamscan/commit/d38d8d19f3b101fcfd4aea21e698cae59df7dded))
+* upgrade snyk from 1.309.0 to 1.311.0 ([871efd5](https://github.com/randytarampi/slamscan/commit/871efd5e429e2f707ffffdf91727f614aea7e46a))
+* upgrade snyk from 1.309.0 to 1.311.0 ([443689d](https://github.com/randytarampi/slamscan/commit/443689dbd27690871c187e92a604fe1998ddcabb))
+
 ## [3.0.2](https://github.com/randytarampi/slamscan/compare/v3.0.1...v3.0.2) (2020-04-22)
 
 
