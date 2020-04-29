@@ -14,7 +14,7 @@
     "url": "git+ssh://git@github.com/randytarampi/slamscan.git"
   },
   "dependencies": {
-    "@randy.tarampi/lambda-logger": "^6.1.15",
+    "@randy.tarampi/lambda-logger": "^6.1.21",
     "@randy.tarampi/serverless": "^6.1.15",
     "clamscan": "^1.2.0",
     "md5": "^2.2.1",
