@@ -44,7 +44,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-if": "^3.0.0",
     "gulp-mocha": "^7.0.2",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "nyc": "^15.0.1",
     "semantic-release": "^17.0.7",
     "serverless": "^1.68.0",
