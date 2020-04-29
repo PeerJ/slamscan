@@ -14,12 +14,12 @@
     "url": "git+ssh://git@github.com/randytarampi/slamscan.git"
   },
   "dependencies": {
-    "@randy.tarampi/lambda-logger": "^6.1.15",
+    "@randy.tarampi/lambda-logger": "^6.1.21",
     "@randy.tarampi/serverless": "^6.1.15",
     "clamscan": "^1.2.0",
     "md5": "^2.2.1",
     "temp": "^0.9.1",
-    "snyk": "^1.311.0"
+    "snyk": "^1.314.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -37,14 +37,14 @@
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-minify-replace": "^0.5.0",
-    "coveralls": "^3.0.13",
+    "coveralls": "^3.1.0",
     "del": "^5.1.0",
     "eslint-plugin-import": "^2.20.2",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-if": "^3.0.0",
     "gulp-mocha": "^7.0.2",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "nyc": "^15.0.1",
     "semantic-release": "^17.0.7",
     "serverless": "^1.68.0",
@@ -84,25 +84,6 @@
   },
   "engines": {
     "node": ">=10"
-  },
-  "greenkeeper": {
-    "commitMessages": {
-      "initialBadge": "docs(greenkeeper): Add Greenkeeper badge.",
-      "initialDependencies": "chore(greenkeeper): Update dependencies.",
-      "initialBranches": "chore(greenkeeper): Whitelist greenkeeper branches.",
-      "dependencyUpdate": "chore(greenkeeper): ${dependency}@${version}.",
-      "devDependencyUpdate": "chore(greenkeeper): ${dependency}@${version}.",
-      "dependencyPin": "fix(greenkeeper): Pin ${dependency}@${oldVersion}.",
-      "devDependencyPin": "fix(greenkeeper): Pin ${dependency}@${oldVersion}."
-    },
-    "prTitles": {
-      "initialPR": "chore(greenkeeper): Update dependencies and enable Greenkeeper",
-      "initialPrBadge": "docs(greenkeeper): Add Greenkeeper badge and enable Greenkeeper",
-      "initialPrBadgeOnly": "docs(greenkeeper): Add Greenkeeper badge",
-      "initialSubgroupPR": "chore(greenkeeper): Update dependencies for ${group}",
-      "basicPR": "chore(greenkeeper): Update ${dependency}",
-      "groupPR": "chore(greenkeeper): Update ${dependency} for ${group}"
-    }
   },
   "snyk": true
 }
