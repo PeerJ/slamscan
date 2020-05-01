@@ -36,3 +36,180 @@ patch:
   'npm:ms:20170412':
     - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > socket.io-stream > debug > ms:
         patched: '2020-04-29T06:44:52.590Z'
+  SNYK-JS-LODASH-567746:
+    - '@semantic-release/git > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-lodash > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - semantic-release > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-webpack > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - webpack-bundle-analyzer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@randy.tarampi/serverless > @randy.tarampi/js > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-eslint > @babel/traverse > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-lodash > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - gulp-eslint > eslint > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - mocha > yargs-unparser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - semantic-release > @semantic-release/release-notes-generator > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/enterprise-plugin > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > archiver > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > inquirer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-webpack > archiver > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > inquirer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > @snyk/ruby-semver > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-config > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@babel/preset-env > @babel/preset-modules > @babel/types > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-eslint > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-lodash > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - gulp-eslint > eslint > inquirer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - gulp-eslint > eslint > table > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - gulp-mocha > mocha > yargs-unparser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-mocha-plugin > mocha > yargs-unparser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - semantic-release > @semantic-release/release-notes-generator > conventional-commits-parser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - semantic-release > @semantic-release/release-notes-generator > conventional-changelog-writer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/components > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > json-refs > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/components > prettyoutput > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > archiver > async > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-webpack > archiver > async > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/enterprise-plugin > @serverless/event-mocks > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > archiver > archiver-utils > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-webpack > archiver > archiver-utils > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > archiver > zip-stream > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-webpack > archiver > zip-stream > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > tabtab > inquirer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-nodejs-lockfile-parser > snyk-config > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@babel/preset-env > @babel/plugin-transform-unicode-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-regex > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-eslint > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/cli > @serverless/template > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/components > @serverless/inquirer > inquirer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > archiver > zip-stream > archiver-utils > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless-webpack > archiver > zip-stream > archiver-utils > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-docker-plugin > @snyk/rpm-parser > eslint > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/ruby-semver > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > snyk-config > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-regex > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-eslint > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-docker-plugin > @snyk/rpm-parser > eslint > inquirer > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > snyk-docker-plugin > @snyk/rpm-parser > eslint > table > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/generator > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > winston > async > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/enterprise-plugin > dependency-tree > precinct > detective-typescript > @typescript-eslint/typescript-estree > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > @tencent-sdk/capi > request-promise-native > request-promise-core > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2020-05-01T06:43:24.920Z'
+    - babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
+    - nyc > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2020-05-01T06:43:24.920Z'
