@@ -1,3 +1,12 @@
+## [3.0.4](https://github.com/randytarampi/slamscan/compare/v3.0.3...v3.0.4) (2020-05-01)
+
+
+### Bug Fixes
+
+* package.json, package-lock.json & .snyk to reduce vulnerabilities ([c4c6811](https://github.com/randytarampi/slamscan/commit/c4c681149df39f0f77cb758daa111db5d5d2c2ab))
+* package.json, package-lock.json & .snyk to reduce vulnerabilities ([f9c21af](https://github.com/randytarampi/slamscan/commit/f9c21afd0cff606885d9e55c965d5c5a8070a984))
+* package.json, package-lock.json & .snyk to reduce vulnerabilities ([0d96a40](https://github.com/randytarampi/slamscan/commit/0d96a40d05779b777fa316b14675f42d2489a35f))
+
 ## [3.0.3](https://github.com/randytarampi/slamscan/compare/v3.0.2...v3.0.3) (2020-04-29)
 
 
