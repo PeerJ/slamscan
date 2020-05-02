@@ -1,3 +1,13 @@
+## [3.0.5](https://github.com/randytarampi/slamscan/compare/v3.0.4...v3.0.5) (2020-05-02)
+
+
+### Bug Fixes
+
+* upgrade multiple dependencies with Snyk ([363dd09](https://github.com/randytarampi/slamscan/commit/363dd09e139724c4cd1e5917daf466e97b54d103))
+* upgrade multiple dependencies with Snyk ([bb9e559](https://github.com/randytarampi/slamscan/commit/bb9e5596472dd7db0c4671d6ea104e585a1e0488))
+* upgrade serverless from 1.68.0 to 1.69.0 ([b7aa2e9](https://github.com/randytarampi/slamscan/commit/b7aa2e996a08858f5013ec90c94899927cbdedd5))
+* upgrade serverless from 1.68.0 to 1.69.0 ([01080a1](https://github.com/randytarampi/slamscan/commit/01080a1ebe10378920a831cdf56b232347dbfec3))
+
 ## [3.0.4](https://github.com/randytarampi/slamscan/compare/v3.0.3...v3.0.4) (2020-05-01)
 
 

@@ -7,7 +7,7 @@
     "url": "https://www.randytarampi.ca"
   },
   "license": "MIT",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "private": true,
   "repository": {
     "type": "git",
@@ -23,12 +23,12 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
     "@babel/plugin-transform-property-literals": "^7.8.3",
     "@babel/polyfill": "^7.8.7",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-env": "^7.9.6",
     "@babel/register": "^7.9.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
@@ -47,7 +47,7 @@
     "mocha": "^7.1.2",
     "nyc": "^15.0.1",
     "semantic-release": "^17.0.7",
-    "serverless": "^1.68.0",
+    "serverless": "^1.69.0",
     "serverless-mocha-plugin": "^1.12.0",
     "serverless-webpack": "^5.3.1",
     "sinon": "^9.0.2",
