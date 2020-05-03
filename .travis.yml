@@ -47,7 +47,7 @@ before_deploy:
   - git config --local user.email "$TRAVIS_AUTHOR_EMAIL"
 deploy:
   provider: script
-  script: npx semantic-release
+  script: yarn semantic-release
   skip_cleanup: true
   on:
     branch: master
