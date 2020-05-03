@@ -55,6 +55,8 @@ deploy:
   on:
     branch: master
     node: 10
+after_failure:
+  - npm list
 addons:
   apt:
     update: true
