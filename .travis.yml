@@ -27,7 +27,7 @@ before_install:
   - lscpu
   - yarn config set script-shell $(which bash)
 install:
-- yarn --frozen-lockfile --ignore-engines
+- yarn install --frozen-lockfile --ignore-engines
 before_script:
   - yarn run pretest
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
