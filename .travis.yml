@@ -32,6 +32,7 @@ before_install:
   - npm install -g npm
 install:
   - npm ci --verbose
+  - npm list
 before_script:
   - npm run pretest
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -57,8 +58,6 @@ deploy:
   on:
     branch: master
     node: 10
-after_failure:
-  - npm list
 addons:
   apt:
     update: true
