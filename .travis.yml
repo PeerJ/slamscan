@@ -30,7 +30,7 @@ before_install:
   - uname -a
   - lscpu
   - npm install -g npm
-  - npm install -g microtime@2
+  - npm install -g microtime@3
 before_script:
   - npm run pretest
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
