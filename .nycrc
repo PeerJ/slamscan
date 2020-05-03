@@ -7,17 +7,11 @@
     "**/dist/**",
     "**/build/**",
     "**/config/**",
-    "**/es5/**",
-    "**/esm/**",
     "**/docs/**",
     "**/coverage/**",
-    "**/src/job-applications/**",
-    "**/src/letters/**",
-    "**/src/resumes/**",
-    "**/src/resume-custom-content/**",
+    "**/.yarn/**",
     "**/.nyc_output/**",
     "**/test/**",
-    "packages/*/*.js",
     "*.js"
   ],
   "reporter": [
