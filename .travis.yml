@@ -30,6 +30,8 @@ before_install:
   - uname -a
   - lscpu
   - npm install -g npm
+install:
+  - npm ci --verbose
 before_script:
   - npm run pretest
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
