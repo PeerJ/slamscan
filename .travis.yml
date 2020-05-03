@@ -25,6 +25,7 @@ cache: yarn
 before_install:
   - uname -a
   - lscpu
+  - yarn config set script-shell $(which bash)
 install:
 - yarn --frozen-lockfile --ignore-engines
 before_script:
