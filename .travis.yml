@@ -25,14 +25,12 @@ env:
     - SLAMSCAN_CLAMSCAN_DEBUG_MODE=true
     - secure: W1nRKh4ZZOqHuW42OwITxAOOSdQIwJadLXZqOMNEcYgZ300y5yMm3ATSXRjzQFHXXNOpvLvD3QsCKAfTg+JN7kgAyld+OvELERIYticJBdBmWaJrTcx1s3KVQdMfobPRb75CSJ9r/lqG8M4fBOWHRWEI3lMaZlzFeTuGgUA9ZvhexTaptB1LxQTy7m+9UG3yEsnY4oAW1QjMyJiLEAErVx2+RvDpNs2mqwoKIyoWwuTtK175AOCgEeOn52WgBzbEtaRoCZoMNQkEQEWnyDlAqkYZI6BCf3mGMbOfBJPpy8bH09TX+FsGhzs1FCE+D4hi9j4YDNROKy2blEft8PEABxfPUdWLkzpGGWT28uzQcCcdxk6QKBx/EJIxEqcvrdIGtaBCvg4iNAmCThGo3Y8tqFBoOkFjJlS/6GzxhGHhvoDO//rYfGDuft34s+XYSARZiflmDNCS22pUxZWUIjzUjHwT5T1STDLSN5l14MpwyiJAlxXJJwuL2ynu0Vn++HtcD/PY65vCY/PTffTSDi6pQ8Liq7PnpU4ud55PGwK0SyiwEqr4cOz62GbQKSl+MVm00f8im3yMmyl5QddeE2Jq63/ZdfmVdsA+6f5KZGxOXRIr4xCe4QVKMWnVbvK9DlrGjNjcsumxVb9UThSU04P2sdwQNijJSwSwjQthifKKoIU=
     - secure: AmoN0+wMwCpt54ucmLy/tMepM8N1j1RwjaNrtSYFSuvivEFdPfQaL3kbtsy6djU6XQfMWIKKA1U4abQ/9zWBgSNYWvyIBfu/LX+uajY7tiqAeEJ07V42XAkZn/dQcti58sD+np5UmDVQF+tt4CKzef3adhtimpzuxbYKQuFSfHsRJXJ3+sI2GiEVoBoSrIkuv5k77AaQhS7Gngs+IKlqbHEJWsbrOIIrkOMe2LMdGT1lWqt2euhFVIkCuUYCVwgQjiInhxwCs5GeLTmjgQ/QeQyYTdqkFMmHayAhNE9FQHx6yt3NPteO16HLDi1D8KUc9IDI+2sZk9yhKt/3iLWZZYTHOX49LsoSBAFVYbI5iK6j99xEZXvR9ORGnmdMtv3dpB+/EVwV5ODLwV/LsMuB7a3epgmIfIyAaePVKW7JlqWuUTIQxouMs8onwdTq0g0uqCAqS7oWb1iklI0UVtjg7rzAtN2a0ES6i8oeJ8L+qGhyckQb6bdzLHUEDOrlVnYrLTF1Hgrh/8FgT19wkI9ZO4CkdgE/n5ilYPRKZx+eQgv6g9RNRS9BGotqOWO+D6YYKWxW7+zPaaFzpFum3fgv8sRTCAgwq9N2wuIpw4ckKVcS61Ltfp5Xe4f3FhBViOoWMXiGx6afQGBGwdyHf2zLXKtBZmj4xjBGiZ46QTls67o=
-cache: npm
+cache: yarn
 before_install:
   - uname -a
   - lscpu
-  - npm install -g npm
-  - npm install -g microtime@3
 before_script:
-  - npm run pretest
+  - yarn run pretest
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
@@ -41,10 +39,10 @@ before_script:
   - echo $SLAMSCAN_CLAMSCAN_BINARY_PATH
   - $SLAMSCAN_CLAMSCAN_BINARY_PATH --version
 script:
-  - npm run cover:actual
+  - yarn run cover:actual
 after_script:
-  - npm run cover:collect
-  - npm run coveralls
+  - yarn run cover:collect
+  - yarn run coveralls
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 before_deploy:
   - git config --local user.name "$TRAVIS_AUTHOR_NAME"
