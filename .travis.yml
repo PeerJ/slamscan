@@ -7,7 +7,6 @@ matrix:
     - node_js: node
     - node_js: lts/*
 node_js:
-  - 8
   - 10
   - 12
   - lts/*
@@ -26,8 +25,6 @@ before_install:
   - uname -a
   - lscpu
   - yarn config set script-shell $(which bash)
-install:
-- yarn install --frozen-lockfile --ignore-engines
 before_script:
   - yarn run pretest
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
