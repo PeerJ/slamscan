@@ -50,6 +50,7 @@ deploy:
   on:
     branch: master
     node: 10
+    os: linux
 addons:
   apt:
     update: true
