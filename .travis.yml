@@ -44,7 +44,7 @@ after_script:
   npx codeclimate-test-reporter < coverage/lcov.info
 - curl -s https://report.ci/upload.py | python - --include='*test-results.xml' --framework=junit
 - bash <(curl -s https://codecov.io/bash)
-- bash <(curl -Ls https://coverage.codacy.com/get.sh) -r coverage/lcov.info
+- bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
 before_deploy:
 - git config --local user.name "$TRAVIS_AUTHOR_NAME"
 - git config --local user.email "$TRAVIS_AUTHOR_EMAIL"
