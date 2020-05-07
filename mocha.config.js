@@ -4,5 +4,8 @@ module.exports = {
     fullTrace: true,
     checkLeaks: true,
     require: ["./babel.register.js", "./test/01_setup", "./test/02_import-all"],
-    exit: true
+    exit: true,
+    reporter: process.env.CI
+        ? "mocha-junit-reporter"
+        : "spec"
 };
