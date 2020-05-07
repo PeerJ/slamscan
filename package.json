@@ -71,7 +71,7 @@
   "scripts": {
     "clean": "gulp -LLLL --color clean",
     "cover": "yarn run cover:actual; yarn run cover:collect",
-    "cover:actual": "rm -rf coverage/ .nyc_output/; yarn run cover:gulp && yarn run cover:sls",
+    "cover:actual": "yarn run cover:gulp && yarn run cover:sls",
     "cover:collect": "mkdir -p .nyc_output/ && cp -r .nyc_output-gulp/* .nyc_output && cp -r .nyc_output-sls/* .nyc_output && nyc report --reporter=lcov",
     "cover:gulp": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-gulp gulp -LLLL --color test",
     "cover:sls": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-sls sls invoke test --path test/sls",
