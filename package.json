@@ -37,6 +37,7 @@
     "babel-plugin-minify-replace": "^0.5.0",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
     "del": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.2",
@@ -73,10 +74,10 @@
     "cover": "yarn run cover:actual; yarn run cover:collect",
     "cover:actual": "yarn run cover:gulp && yarn run cover:sls",
     "cover:collect": "mkdir -p .nyc_output/ && cp -r .nyc_output-gulp/* .nyc_output && cp -r .nyc_output-sls/* .nyc_output && nyc report --reporter=lcov",
-    "cover:gulp": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-gulp gulp -LLLL --color test",
-    "cover:sls": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-sls sls invoke test --path test/sls",
+    "cover:gulp": "cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-gulp gulp -LLLL --color test",
+    "cover:sls": "cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-sls sls invoke test --path test/sls",
     "coveralls": "cat coverage/lcov.info | coveralls",
-    "deploy": "NODE_ENV=production sls deploy --stage deploy",
+    "deploy": "cross-env-shell NODE_ENV=production sls deploy --stage deploy",
     "postinstall": "./bin/build.sh",
     "precover": "yarn run pretest",
     "prepare": "yarn run snyk-protect",
@@ -86,8 +87,8 @@
     "snyk-protect": "snyk protect",
     "test": "yarn run test:actual",
     "test:actual": "yarn run test:actual:gulp && yarn run test:actual:sls",
-    "test:actual:gulp": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} gulp -LLLL --color test",
-    "test:actual:sls": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.js"
+    "test:actual:gulp": "cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} gulp -LLLL --color test",
+    "test:actual:sls": "cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.js"
   },
   "snyk": true
 }
