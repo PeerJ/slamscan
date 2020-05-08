@@ -42,7 +42,7 @@ after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 - CODECLIMATE_API_HOST=https://codebeat.co/webhooks/code_coverage CODECLIMATE_REPO_TOKEN=6e956650-6125-4fbb-8e16-10a17d043e2c
   npx codeclimate-test-reporter < coverage/lcov.info
-- curl -s https://report.ci/upload.py | python - --include='*test-results.xml' --framework=junit
+- python < $(curl https://report.ci/upload.py)
 - bash <(curl -s https://codecov.io/bash)
 - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
 before_deploy:
