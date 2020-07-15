@@ -12,6 +12,7 @@
 [![Coverage status](https://img.shields.io/coveralls/randytarampi/slamscan.svg?style=flat-square)](https://coveralls.io/github/randytarampi/slamscan?branch=master)
 [![Maintainability status](https://img.shields.io/codeclimate/maintainability-percentage/randytarampi/slamscan.svg?style=flat-square)](https://codeclimate.com/github/randytarampi/slamscan/maintainability)
 [![Analytics](https://ga-beacon.appspot.com/UA-50921068-1/beacon/github/randytarampi/me/tree/master/packages/slamscan?flat&useReferrer)](https://github.com/igrigorik/ga-beacon)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frandytarampi%2Fslamscan.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frandytarampi%2Fslamscan?ref=badge_shield)
 
 
 Originally written in [2017](https://github.com/PeerJ/slamscan), and rewritten based off [upsidetravel/bucket-antivirus-function](https://github.com/upsidetravel/bucket-antivirus-function), the goal of this project was to efficiently virus scan files that are uploaded to a S3 bucket and notify the results of the scan. This is now just a relic that goes largely unused, but serves as a demo for the couple of people that wanted to see how I'd rewrite something in a "modern" way.
@@ -75,3 +76,7 @@ You'll need to specify some S3 buckets for `scanFile` to monitor before you're a
         - or attaching an inline policy to the `slamscan-deploy-us-east-1-lambdaRole`.
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frandytarampi%2Fslamscan.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frandytarampi%2Fslamscan?ref=badge_large)
