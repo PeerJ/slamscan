@@ -80,7 +80,7 @@
     "deploy": "cross-env-shell NODE_ENV=production sls deploy --stage deploy",
     "postinstall": "./bin/build.sh",
     "precover": "yarn run pretest",
-    "prepare": "yarn run snyk-protect",
+    "prepare": "npm run snyk-protect && yarn run snyk-protect",
     "pretest": "gulp -LLLL --color lint",
     "remove": "sls remove --stage deploy",
     "seed": "sls invoke --stage deploy --function updateDefinitions",
