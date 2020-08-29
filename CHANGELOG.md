@@ -1,3 +1,10 @@
+## [3.0.8](https://github.com/randytarampi/slamscan/compare/v3.0.7...v3.0.8) (2020-08-29)
+
+
+### Bug Fixes
+
+* `webpack-node-externals` expects an `allowlist`, not a `whitelist`. ([e2b9abe](https://github.com/randytarampi/slamscan/commit/e2b9abe269f75e35afdde0275eb1cb387354cff2))
+
 ## [3.0.7](https://github.com/randytarampi/slamscan/compare/v3.0.6...v3.0.7) (2020-08-29)
 
 
