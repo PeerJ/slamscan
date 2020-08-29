@@ -37,7 +37,7 @@ module.exports = {
         hints: false
     },
     externals: [nodeExternals({
-        whitelist: [
+        allowlist: [
             /@randy\.tarampi\/\w+/
         ]
     }), "aws-sdk"],
