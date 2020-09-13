@@ -1,3 +1,13 @@
+## [3.0.9](https://github.com/randytarampi/slamscan/compare/v3.0.8...v3.0.9) (2020-09-13)
+
+
+### Bug Fixes
+
+* upgrade eslint from 7.7.0 to 7.8.0 ([ecd85f1](https://github.com/randytarampi/slamscan/commit/ecd85f16908f7c700d19d4357e45745d6bc2d4a6))
+* upgrade multiple dependencies with Snyk ([ef0866c](https://github.com/randytarampi/slamscan/commit/ef0866c983de9af261ec2e3b69948e932dda1e12))
+* upgrade serverless from 1.80.0 to 1.81.1 ([5a5bd21](https://github.com/randytarampi/slamscan/commit/5a5bd2112822e7587686da247d55ca1fd0913034))
+* upgrade snyk from 1.386.0 to 1.387.1 ([ee79534](https://github.com/randytarampi/slamscan/commit/ee795341ea3bd8f9be9559d3c97f881d0fefb095))
+
 ## [3.0.8](https://github.com/randytarampi/slamscan/compare/v3.0.7...v3.0.8) (2020-08-29)
 
 
