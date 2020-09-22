@@ -1,3 +1,13 @@
+## [3.0.10](https://github.com/randytarampi/slamscan/compare/v3.0.9...v3.0.10) (2020-09-22)
+
+
+### Bug Fixes
+
+* upgrade semantic-release from 17.1.1 to 17.1.2 ([785fa73](https://github.com/randytarampi/slamscan/commit/785fa73d6caa2713eee86c6a559993e52cb0797b))
+* upgrade serverless-webpack from 5.3.4 to 5.3.5 ([53e3df0](https://github.com/randytarampi/slamscan/commit/53e3df011792e3e7206083bc0f7ecd37deaed796))
+* upgrade webpack from 4.44.1 to 4.44.2 ([7c88851](https://github.com/randytarampi/slamscan/commit/7c8885171dc36309ed036ea86a598edb25ab451a))
+* upgrade webpack-bundle-analyzer from 3.8.0 to 3.9.0 ([8ce955a](https://github.com/randytarampi/slamscan/commit/8ce955ac0cedfb65ecde7d86553b193f2a071df0))
+
 ## [3.0.9](https://github.com/randytarampi/slamscan/compare/v3.0.8...v3.0.9) (2020-09-13)
 
 
