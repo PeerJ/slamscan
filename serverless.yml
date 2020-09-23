@@ -20,9 +20,6 @@ layers:
     description: ClamAV binaries from the `amazonlinux:2` docker image
     path: build
 
-package:
-  individually: true
-
 
 plugins:
   - serverless-webpack
