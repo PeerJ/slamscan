@@ -1,7 +1,7 @@
 {
   "name": "slamscan",
   "description": "Use lambda to scan s3 files on upload. S3 LAMbda clamSCAN",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "author": {
     "name": "Randy Tarampi",
     "email": "rt@randytarampi.ca",

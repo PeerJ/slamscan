@@ -1,3 +1,10 @@
+## [3.0.11](https://github.com/randytarampi/slamscan/compare/v3.0.10...v3.0.11) (2020-09-23)
+
+
+### Bug Fixes
+
+* **package:** Upgrade packages for 2020-09-23. ([b40a6b0](https://github.com/randytarampi/slamscan/commit/b40a6b0498ab2eadfda5387f5b95c985b4e6157f))
+
 ## [3.0.10](https://github.com/randytarampi/slamscan/compare/v3.0.9...v3.0.10) (2020-09-22)
 
 
