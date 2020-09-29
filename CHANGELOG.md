@@ -1,3 +1,14 @@
+## [3.0.12](https://github.com/randytarampi/slamscan/compare/v3.0.11...v3.0.12) (2020-09-29)
+
+
+### Bug Fixes
+
+* upgrade [@randy](https://github.com/randy).tarampi/lambda-logger from 6.3.0 to 6.3.4 ([1fe833f](https://github.com/randytarampi/slamscan/commit/1fe833f1644cf1adda3178f3d0049432f2c1f36f))
+* upgrade [@randy](https://github.com/randy).tarampi/serverless from 6.3.0 to 6.3.4 ([895a5a5](https://github.com/randytarampi/slamscan/commit/895a5a50bcd32241569cd29510101972dcbbb6e3))
+* upgrade eslint from 7.9.0 to 7.10.0 ([e766bf0](https://github.com/randytarampi/slamscan/commit/e766bf00f8aa59c7c799b4a28446df8cc01ffd2e))
+* upgrade eslint-plugin-import from 2.22.0 to 2.22.1 ([47fd136](https://github.com/randytarampi/slamscan/commit/47fd13641589d329f0ec1d1144bbeb4adcb62f29))
+* upgrade serverless from 2.2.0 to 2.3.0 ([ede7dff](https://github.com/randytarampi/slamscan/commit/ede7dff83457ed02f4374286720f3afdb7f8d684))
+
 ## [3.0.11](https://github.com/randytarampi/slamscan/compare/v3.0.10...v3.0.11) (2020-09-23)
 
 
