@@ -12,7 +12,7 @@
     "email": "bugs@randytarampi.ca"
   },
   "dependencies": {
-    "@randy.tarampi/lambda-logger": "^6.3.0",
+    "@randy.tarampi/lambda-logger": "^6.3.4",
     "@randy.tarampi/serverless": "^6.3.4",
     "clamscan": "^1.3.3",
     "md5": "^2.3.0",
@@ -39,8 +39,8 @@
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
-    "eslint": "^7.9.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint": "^7.10.0",
+    "eslint-plugin-import": "^2.22.1",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-if": "^3.0.0",
