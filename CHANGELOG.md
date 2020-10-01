@@ -1,3 +1,11 @@
+## [3.0.13](https://github.com/randytarampi/slamscan/compare/v3.0.12...v3.0.13) (2020-10-01)
+
+
+### Bug Fixes
+
+* upgrade sinon from 9.0.3 to 9.1.0 ([ba42c62](https://github.com/randytarampi/slamscan/commit/ba42c62ffebbce5c3173b5e4bfe0f6bb7ebedde5))
+* **package:** Rebuild `yarn.lock`. ([80fb8e6](https://github.com/randytarampi/slamscan/commit/80fb8e686ebeac88a1862a2189800ba3b395d092))
+
 ## [3.0.12](https://github.com/randytarampi/slamscan/compare/v3.0.11...v3.0.12) (2020-09-29)
 
 
