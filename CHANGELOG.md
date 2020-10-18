@@ -1,3 +1,16 @@
+## [3.0.14](https://github.com/randytarampi/slamscan/compare/v3.0.13...v3.0.14) (2020-10-18)
+
+
+### Bug Fixes
+
+* package.json to reduce vulnerabilities ([569c74c](https://github.com/randytarampi/slamscan/commit/569c74c564b0d4a40daf975e8fe9e79d04117675))
+* upgrade eslint from 7.10.0 to 7.11.0 ([e6496bb](https://github.com/randytarampi/slamscan/commit/e6496bb2bb2b408316a793ee25c4d320504bb097))
+* upgrade multiple dependencies with Snyk ([3503616](https://github.com/randytarampi/slamscan/commit/3503616e4cee7d36040c5cb122649031899d8db9))
+* upgrade multiple dependencies with Snyk ([d7bd4a0](https://github.com/randytarampi/slamscan/commit/d7bd4a0f694affe841a3eee7ecd57dcffdb49e1b))
+* upgrade semantic-release from 17.1.2 to 17.2.0 ([3b6248b](https://github.com/randytarampi/slamscan/commit/3b6248bc0efdc89e0a323ef54bf8d93150855484))
+* upgrade serverless from 2.4.0 to 2.5.0 ([0772f1f](https://github.com/randytarampi/slamscan/commit/0772f1fdb6d09359146686a0b5478c30a85c56fc))
+* upgrade sinon from 9.1.0 to 9.2.0 ([fc5943c](https://github.com/randytarampi/slamscan/commit/fc5943cad6a31f4b4cbe4a51fcd42828921669fb))
+
 ## [3.0.13](https://github.com/randytarampi/slamscan/compare/v3.0.12...v3.0.13) (2020-10-01)
 
 
