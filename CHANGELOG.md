@@ -1,3 +1,11 @@
+## [3.0.15](https://github.com/randytarampi/slamscan/compare/v3.0.14...v3.0.15) (2020-11-22)
+
+
+### Bug Fixes
+
+* upgrade eslint from 7.11.0 to 7.12.0 ([647efe1](https://github.com/randytarampi/slamscan/commit/647efe1dd6a1dd5c66354725e351389ee9cf9cbd))
+* upgrade temp from 0.9.1 to 0.9.2 ([554820e](https://github.com/randytarampi/slamscan/commit/554820e560b2c0bed8041c271655ab4ddaa479b0))
+
 ## [3.0.14](https://github.com/randytarampi/slamscan/compare/v3.0.13...v3.0.14) (2020-10-18)
 
 
