@@ -1,0 +1,47 @@
+{
+  "extension": [
+    ".js"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/config/**",
+    "**/docs/**",
+    "**/coverage/**",
+    "**/.yarn/**",
+    "**/.nyc_output/**",
+    "**/test/**",
+    "*.js"
+  ],
+  "reporter": [
+    "text-summary",
+    "lcov"
+  ],
+  "require": [
+    "./babel.register.js"
+  ],
+  "cache": true,
+  "all": true,
+  "check-coverage": false,
+  "sourceMap": false,
+  "instrument": false,
+  "watermarks": {
+    "lines": [
+      70,
+      90
+    ],
+    "functions": [
+      70,
+      90
+    ],
+    "branches": [
+      70,
+      90
+    ],
+    "statements": [
+      70,
+      90
+    ]
+  }
+}

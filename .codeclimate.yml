@@ -1,0 +1,32 @@
+version: "2"
+checks:
+  method-lines:
+    enabled: true
+    config:
+      threshold: 100
+  method-complexity:
+    config:
+      threshold: 10
+  method-count:
+    config:
+      threshold: 25
+plugins:
+  editorconfig:
+    enabled: false
+  eslint:
+    enabled: true
+    channel: eslint-6
+    config: .eslintrc.yaml
+  fixme:
+    enabled: true
+  git-legal:
+    enabled: true
+  shellcheck:
+    enabled: true
+exclude_patterns:
+  - "build/"
+  - "node_modules/"
+  - "test/"
+  - ".nyc_output*/"
+  - ".serverless/"
+  - ".webpack/"

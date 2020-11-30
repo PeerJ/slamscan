@@ -1,22 +1,3 @@
-# Configuration
-config/local*
-config/production
-
-# Local clamscan files
-*.zip
-bin/
-etc/
-include/
-lib64/
-sbin/
-share/
-
-# node-lambda configuration
-context.json
-event.json
-event_sources.json
-deploy.env
-
 # Logs
 logs
 *.log
@@ -35,6 +16,8 @@ coverage
 
 # nyc test coverage
 .nyc_output
+.nyc_output-gulp
+.nyc_output-sls
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -49,11 +32,12 @@ build/Release
 node_modules
 jspm_packages
 
-# Yarn lock file
-yarn.lock
-
-# Optional npm cache directory
+# npm and yarn directories
 .npm
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
 
 # Optional REPL history
 .node_repl_history
@@ -67,6 +51,14 @@ yarn.lock
 
 # Compiled resources
 dist
+build
+.webpack
+.dynamodb
 
-# Environment variables
-.env
+# Posts content
+posts/
+
+# Serverless
+.serverless
+*.db
+_warmup

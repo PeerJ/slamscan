@@ -1,0 +1,41 @@
+service: slamscan
+
+frameworkVersion: ">=2.0.0 <3.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+  memorySize: 256
+  timeout: 120
+
+  iamRoleStatements: ${file(./config/iamRoleStatements.js):default}
+  environment: ${file(./config/env.yml):${self:provider.stage}.environment}
+
+
+layers:
+  clamAv:
+    description: ClamAV binaries from the `amazonlinux:2` docker image
+    path: build
+
+
+plugins:
+  - serverless-webpack
+  - serverless-mocha-plugin
+
+
+custom:
+  webpack:
+    individually: true
+    webpackConfig: ./webpack.serverless.config.js
+    includeModules:
+      forceExclude:
+        - aws-sdk
+
+
+functions: ${file(./config/functions.js):default}
+
+
+resources: ${file(./config/resources.js):default}
